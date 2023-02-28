@@ -2,6 +2,7 @@ import pandas as pd,os
 import firebase_admin,json,sys
 from firebase_admin import credentials, firestore
 
+
 if len(sys.argv) < 2:
     print('Error: Debe ingresar el ID del paciente.')
     sys.exit()
