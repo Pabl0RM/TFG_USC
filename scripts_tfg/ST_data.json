@@ -1,0 +1,16 @@
+{
+    "name": [
+        129,
+        114,
+        115,
+        125,
+        128
+    ],
+    "time-stamp": "2023-02-26 18:24:47.190382",
+    "execution-time": "00:12:992",
+    "avg-test-time": "00:07:977",
+    "aciertos": 2,
+    "fallos": 2,
+    "omisiones": 1,
+    "multi-idioma": "gal"
+}
