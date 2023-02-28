@@ -33,6 +33,10 @@ img_folder = "imgs/"
 img_paths = sorted([img_folder+f for f in os.listdir(img_folder) if os.path.isfile(os.path.join(img_folder, f)) and f.endswith('.jpg')]    )
 A=1
 print(img_paths)
+triada=img_paths[A:A+3]
+print(triada)
+print(triada["_c" in triada])
+exit()
 image1 = pygame.image.load(img_paths[A])
 correct_image = pygame.image.load(img_paths[A+1])
 incorrect_image = pygame.image.load(img_paths[A+2])
