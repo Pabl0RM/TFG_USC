@@ -3,7 +3,7 @@ import pygame,os,subprocess,sys
 import pygame_menu
 from pygame_menu import themes
 from pygame.locals import *
-from scripts_tfg.game_test import mmain
+from game_test import mmain
 import speech_recognition as sr
 import gtts
 from playsound import playsound

@@ -1,16 +1,12 @@
 {
-    "name": [
-        129,
-        114,
-        115,
-        125,
-        128
-    ],
-    "time-stamp": "2023-02-26 18:24:47.190382",
-    "execution-time": "00:12:992",
-    "avg-test-time": "00:07:977",
-    "aciertos": 2,
-    "fallos": 2,
-    "omisiones": 1,
-    "multi-idioma": "gal"
+    "name": [],
+    "time-stamp": "2023-02-28 21:57:58.702201",
+    "execution-time": "00:13:791",
+    "avg-test-time": "00:08:351",
+    "aciertos": 6,
+    "fallos": 0,
+    "omisiones": 0,
+    "multi-idioma": "esp",
+    "Version": "1.0",
+    "SO": "Linux"
 }

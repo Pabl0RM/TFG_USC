@@ -152,7 +152,7 @@ def mmain(Name,lang,VERSION):
                         question_times.append(counting_time)
                         aciertos+=1                    
                         print("click")
-                        pygame.draw.rect(window, (155,155,155), correct_image_rect, 10)
+                        pygame.draw.rect(window, (155,155,155), incorrect_image_rect, 10)
                         pygame.display.update()
                         pygame.time.wait(500)
                         
@@ -161,7 +161,7 @@ def mmain(Name,lang,VERSION):
                     if incorrect_image_clicked and counter>=5:
                         question_times.append(counting_time)
                         fallos+=1                        
-                        pygame.draw.rect(window, (155,155,155), incorrect_image_rect, 10)
+                        pygame.draw.rect(window, (155,155,155), correct_image_rect, 10)
 
                         pygame.display.update()
                         pygame.time.wait(500)                        
@@ -278,6 +278,7 @@ def mmain(Name,lang,VERSION):
 
     t_mean=int(statistics.mean(question_times))
 
+    if Name=="":Name="test"
     basic_encrypt=[ord(x)+17 for x in list(Name)]
     ID_enmcr=basic_encrypt
     # print(ID_enmcr)
@@ -292,6 +293,7 @@ def mmain(Name,lang,VERSION):
 
 
     # Data to be written
+    if lang=="":lang="esp"
     dictionary = {
         "name": ID_enmcr,
         "time-stamp":str(datetime.datetime.now()),
