@@ -30,8 +30,9 @@ bg_image = pygame.transform.scale(bg_image, window.get_size())
 img_folder = "imgs/"
 
 # Obtener una lista de los nombres de archivo de todas las imágenes en la carpeta
-img_paths = [img_folder+f for f in os.listdir(img_folder) if os.path.isfile(os.path.join(img_folder, f)) and f.endswith('.jpg')]    
+img_paths = sorted([img_folder+f for f in os.listdir(img_folder) if os.path.isfile(os.path.join(img_folder, f)) and f.endswith('.jpg')]    )
 A=1
+print(img_paths)
 image1 = pygame.image.load(img_paths[A])
 correct_image = pygame.image.load(img_paths[A+1])
 incorrect_image = pygame.image.load(img_paths[A+2])
