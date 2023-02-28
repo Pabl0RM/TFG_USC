@@ -11,6 +11,7 @@ start_time = pygame.time.get_ticks()
 X=800
 Y=600
 
+
 X,Y = pygame.display.set_mode().get_size()
 window = pygame.display.set_mode((X, Y),RESIZABLE)
 
