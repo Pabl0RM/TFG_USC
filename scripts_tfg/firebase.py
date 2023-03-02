@@ -1,4 +1,4 @@
-import pandas as pd,os
+import os
 import firebase_admin,json,sys
 from firebase_admin import credentials, firestore
 
