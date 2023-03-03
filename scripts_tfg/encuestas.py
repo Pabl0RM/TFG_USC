@@ -8,6 +8,7 @@ X,Y = pygame.display.set_mode().get_size()
 surface = pygame.display.set_mode((X, Y),RESIZABLE)
 
 # Crear la encuesta
+
 def survey_results(result, data):
     print(f"Resultados de la encuesta: {result}")
     print(f"Datos adicionales: {data}")
