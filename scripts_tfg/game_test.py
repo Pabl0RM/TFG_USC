@@ -76,7 +76,7 @@ def mmain(Name,lang,VERSION):
 
 
     running = True
-    max_time_without_click = 4
+    max_time_without_click = 5
 
     # tiempo actual sin clic
     time_without_click = 0
@@ -115,7 +115,7 @@ def mmain(Name,lang,VERSION):
                     
                 
                 # Si se hizo clic en una imagen y el contador es menor a 10, cargar nuevas imágenes
-                if ((correct_image_clicked ) or incorrect_image_clicked) and counter <=6:
+                if ((correct_image_clicked ) or incorrect_image_clicked) and counter <=len(contiene_c)-1:
                     
                     window.blit(image1, image1_rect)
                     window.blit(correct_image, correct_image_rect)
@@ -126,6 +126,7 @@ def mmain(Name,lang,VERSION):
                         question_times.append(counting_time)
                         aciertos+=1                     
                         pygame.draw.rect(window, (0, 255, 0), incorrect_image_rect, 10)
+                        pygame.draw.rect(window, (0, 255, 0), image1_rect, 10)
                         counting_string2="Imagen correcta"
                         counting_text2 = font.render(str(counting_string2), 1, (255,255,255))
                         counting_rect2 = counting_text2.get_rect(center = window.get_rect().center)
@@ -139,7 +140,7 @@ def mmain(Name,lang,VERSION):
                         question_times.append(counting_time)
                         fallos+=1                     
                         pygame.draw.rect(window, (255, 0, 0), correct_image_rect, 10)
-                        
+                        pygame.draw.rect(window, (255, 0, 0), image1_rect, 10)
                         counting_string2="No es la imagen correcta"
                         counting_text2 = font.render(str(counting_string2), 1, (255,255,255))
                         counting_rect2 = counting_text2.get_rect(center = window.get_rect().center)
@@ -153,6 +154,7 @@ def mmain(Name,lang,VERSION):
                         aciertos+=1                    
                         print("click")
                         pygame.draw.rect(window, (155,155,155), incorrect_image_rect, 10)
+                        pygame.draw.rect(window, (155,155,155), image1_rect, 10)
                         pygame.display.update()
                         pygame.time.wait(500)
                         
@@ -162,7 +164,7 @@ def mmain(Name,lang,VERSION):
                         question_times.append(counting_time)
                         fallos+=1                        
                         pygame.draw.rect(window, (155,155,155), correct_image_rect, 10)
-
+                        pygame.draw.rect(window, (155,155,155), image1_rect, 10)
                         pygame.display.update()
                         pygame.time.wait(500)                        
                     
@@ -214,7 +216,7 @@ def mmain(Name,lang,VERSION):
             counting_rect_time = counting_text_time.get_rect(center = window.get_rect().center)
             window.blit(counting_text_time, counting_rect_time)
             pygame.display.update()
-            pygame.time.wait(2000)     
+            pygame.time.wait(2500)     
             
                     
             image1 = pygame.image.load(contiene_c[counter])
@@ -262,11 +264,41 @@ def mmain(Name,lang,VERSION):
         window.blit(counting_text, counting_rect)
         
 
+
+
+
         # Actualizar pantalla
         pygame.display.update()  
         clock.tick(25)   
-        if counter == 7:
-            time.sleep(0.5)
+        if counter == len(contiene_c)-1:
+             # Definir las variables a mostrar
+            variable_1 = "Hola"
+            variable_2 = 123
+            variable_3 = True
+            variable_4 = 3.1416
+            variable_5 = [1, 2, 3, 4, 5]
+            # Definir el color del texto
+            text_color = (255, 255, 255)
+        #   Renderizar las variables en la ventana
+            variable_1_text = font.render(str(variable_1), True, text_color)
+            window.blit(variable_1_text, (50, 50))
+
+            variable_2_text = font.render(str(variable_2), True, text_color)
+            window.blit(variable_2_text, (50, 100))
+
+            variable_3_text = font.render(str(variable_3), True, text_color)
+            window.blit(variable_3_text, (50, 150))
+
+            variable_4_text = font.render(str(variable_4), True, text_color)
+            window.blit(variable_4_text, (50, 200))
+
+            variable_5_text = font.render(str(variable_5), True, text_color)
+            window.blit(variable_5_text, (50, 250))
+
+
+            # Actualizar pantalla
+            pygame.display.update()  
+            time.sleep(1.5)
             running = False   
     print("----------------------Fin de juego----------------------\n\n\n")
     print("------------------------------------------------")

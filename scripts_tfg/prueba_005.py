@@ -7,6 +7,10 @@ from game_test import mmain
 import speech_recognition as sr
 import gtts
 from playsound import playsound
+global count_down,seconds
+count_down = 5
+seconds=0
+
 global Name,lang
 Name='';lang=''
 # Crea una fuente personalizada con tamaño 10
@@ -42,6 +46,9 @@ Y=1060
 X,Y = pygame.display.set_mode().get_size()
 
 surface = pygame.display.set_mode((X, Y),RESIZABLE)
+# Configurar el temporizador
+clock = pygame.time.Clock()
+start_ticks = 0
 
 
 
@@ -95,10 +102,21 @@ def name():
     
     # TODO funciones con ALSpeechRecognition para pepper?
     
-    
+def start_countdown():
+    global start_ticks
+    start_ticks = pygame.time.get_ticks()
+
+# Función para actualizar el temporizador
+def update_timer():
+    global seconds
+    total_seconds = (pygame.time.get_ticks() - start_ticks) // 1000
+    seconds = total_seconds % 60
+    timer_text =  str(5 - seconds) + "s"
+    timer_label.set_title(timer_text)    
     
 def start_the_game():
     mainmenu._open(loading)
+    start_countdown()
     pygame.time.set_timer(update_loading, 30)
  
 def level_menu():
@@ -150,7 +168,8 @@ options.add.range_slider('Selector', 50, (0, 100), 1,
 
  
 loading = pygame_menu.Menu('Cargando el test...', X, Y, theme=my_theme)
-loading.add.progress_bar("Progreso", progressbar_id = "1", default=0, width = 400, )
+
+timer_label = loading.add.label('5s', font_size=100)
  
 arrow = pygame_menu.widgets.LeftArrowSelection(arrow_size = (20, 30))
  
@@ -161,16 +180,17 @@ while True:
     events = pygame.event.get()
     for event in events:
         if event.type == update_loading:
-            progress = loading.get_widget("1")
-            progress.set_value(progress.get_value() + 1)
-            if progress.get_value() == 100:
-                pygame.time.set_timer(
-                    update_loading, 0
-                                      )
+
+
+            pygame.time.set_timer(pygame.USEREVENT+1, 1000)
+            # Actualizar el temporizador
+            if start_ticks > 0:
+                update_timer()
                 # subprocess.Popen("python prueba_004.py ", shell=True)  
                 # subprocess.run(["python", "prueba_004.py"])
-                mmain(Name,lang,VERSION)
-                exit()             
+                if seconds==5:
+                    mmain(Name,lang,VERSION)
+                    exit()             
         if event.type == pygame.QUIT:
             pygame.display.quit()
             pygame.quit()
