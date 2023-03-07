@@ -9,8 +9,8 @@ import qi
 
 localhost:42067
 """
-tts=ALProxy("ALAnimatedSpeech","localhost", 42067)
-postura=ALProxy("ALRobotPosture","localhost", 42067)
+tts=ALProxy("ALAnimatedSpeech","localhost", 32871)
+postura=ALProxy("ALRobotPosture","localhost", 32871)
 
 
 postura.goToPosture("Stand", 1.0)

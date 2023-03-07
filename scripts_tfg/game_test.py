@@ -1,4 +1,4 @@
-import pygame,time,os,random,json,statistics,datetime,platform
+import pygame,time,os,random,json,statistics,datetime,platform,subprocess
 from pygame.locals import *
 global namee
 def mmain(Name,lang,VERSION):
@@ -64,10 +64,10 @@ def mmain(Name,lang,VERSION):
     incorrect_image = pygame.transform.smoothscale(incorrect_image, (int(X*0.25), int(Y*0.25)))
 
     # Definir posición de las imágenes
-    image1_rect = image1.get_rect(center=(int(X*0.5),int( Y/5.4545454)))
+    image1_rect = image1.get_rect(center=(int(X*0.5),int( Y/3.5545454)))
     aux_r=random.random()
-    if aux_r<0.7:correct_image_rect = correct_image.get_rect(center=(int(X/5.33333),int( Y/1.7148)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/1.23),int( Y/1.7148)))
-    else:correct_image_rect = correct_image.get_rect(center=(int(X/1.23),int( Y/1.7148)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/5.33333),int( Y/1.7148)))
+    if aux_r<0.7:correct_image_rect = correct_image.get_rect(center=(int(X/5.33333),int( Y/1.4)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/1.23),int( Y/1.4)))
+    else:correct_image_rect = correct_image.get_rect(center=(int(X/1.23),int( Y/1.4)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/5.33333),int( Y/1.4)))
 
     # Banderas para verificar si se hizo clic en una imagen (int(X/1.23),int( Y/1.7148))
     correct_image_clicked = False
@@ -76,11 +76,13 @@ def mmain(Name,lang,VERSION):
 
 
     running = True
-    max_time_without_click = 5
+    max_time_without_click = 10
 
     # tiempo actual sin clic
     time_without_click = 0
     last_click_time=start_time
+    counter+=1
+    feedback=(window.get_width()//2,(window.get_height()//2)+100)
     while running:
         counting_time = pygame.time.get_ticks() - start_time
         window.blit(bg_image, (0, 0))
@@ -123,29 +125,35 @@ def mmain(Name,lang,VERSION):
                     
                     if (correct_image_clicked ) and counter <=4:
                         print("click")
+                        
                         question_times.append(counting_time)
                         aciertos+=1                     
                         pygame.draw.rect(window, (0, 255, 0), incorrect_image_rect, 10)
                         pygame.draw.rect(window, (0, 255, 0), image1_rect, 10)
                         counting_string2="Imagen correcta"
-                        counting_text2 = font.render(str(counting_string2), 1, (255,255,255))
-                        counting_rect2 = counting_text2.get_rect(center = window.get_rect().center)
+                        counting_text2 = font.render(str(counting_string2), 1, (0,0,0))
+                        counting_rect2 = counting_text2.get_rect(center = feedback)
                         window.blit(counting_text2, counting_rect2)
                         pygame.display.update()
+                        subprocess.run(["python", "feedbackPepper-tablet/pruebaPepper_02.py"])
+                        counting_time=counting_time-4000
                         pygame.time.wait(2000)
                         
 
                     
                     if incorrect_image_clicked and counter <=4:
+                        
                         question_times.append(counting_time)
                         fallos+=1                     
                         pygame.draw.rect(window, (255, 0, 0), correct_image_rect, 10)
                         pygame.draw.rect(window, (255, 0, 0), image1_rect, 10)
                         counting_string2="No es la imagen correcta"
-                        counting_text2 = font.render(str(counting_string2), 1, (255,255,255))
-                        counting_rect2 = counting_text2.get_rect(center = window.get_rect().center)
+                        counting_text2 = font.render(str(counting_string2), 1, (0,0,0))
+                        counting_rect2 = counting_text2.get_rect(center = feedback)
                         window.blit(counting_text2, counting_rect2)
                         pygame.display.update()
+                        subprocess.run(["python", "feedbackPepper-tablet/pruebaPepper_03.py"])
+                        counting_time=counting_time-4000
                         pygame.time.wait(2000)
 
 
@@ -212,8 +220,8 @@ def mmain(Name,lang,VERSION):
             print("No se ha hecho clic en la ventana en los últimos 4 segundos.")
             
             counting_string_time="No se ha hecho clic en la ventana en los últimos 4 segundos."
-            counting_text_time = font.render(str(counting_string_time), 1, (255,255,255))
-            counting_rect_time = counting_text_time.get_rect(center = window.get_rect().center)
+            counting_text_time = font.render(str(counting_string_time), 1, (0,0,0))
+            counting_rect_time = counting_text_time.get_rect(center = feedback)
             window.blit(counting_text_time, counting_rect_time)
             pygame.display.update()
             pygame.time.wait(2500)     
@@ -254,8 +262,8 @@ def mmain(Name,lang,VERSION):
 
         counting_string = "%s:%s:%s" % (counting_minutes, counting_seconds, counting_millisecond)
 
-        counting_text = font.render(str(counting_string), 1, (255,255,255))
-        counting_rect = counting_text.get_rect(center = window.get_rect().center)
+        counting_text = font.render(str(counting_string), 1, (0,0,0))
+        counting_rect = counting_text.get_rect(center = feedback)
 
         # Dibujar imágenes en la ventana
         window.blit(image1, image1_rect)
@@ -270,30 +278,8 @@ def mmain(Name,lang,VERSION):
         # Actualizar pantalla
         pygame.display.update()  
         clock.tick(25)   
-        if counter == len(contiene_c)-1:
-             # Definir las variables a mostrar
-            variable_1 = "Hola"
-            variable_2 = 123
-            variable_3 = True
-            variable_4 = 3.1416
-            variable_5 = [1, 2, 3, 4, 5]
-            # Definir el color del texto
-            text_color = (255, 255, 255)
-        #   Renderizar las variables en la ventana
-            variable_1_text = font.render(str(variable_1), True, text_color)
-            window.blit(variable_1_text, (50, 50))
+        if counter == len(contiene_c):
 
-            variable_2_text = font.render(str(variable_2), True, text_color)
-            window.blit(variable_2_text, (50, 100))
-
-            variable_3_text = font.render(str(variable_3), True, text_color)
-            window.blit(variable_3_text, (50, 150))
-
-            variable_4_text = font.render(str(variable_4), True, text_color)
-            window.blit(variable_4_text, (50, 200))
-
-            variable_5_text = font.render(str(variable_5), True, text_color)
-            window.blit(variable_5_text, (50, 250))
 
 
             # Actualizar pantalla
@@ -304,10 +290,7 @@ def mmain(Name,lang,VERSION):
     print("------------------------------------------------")
 
 
-
-    print("Tiempo total:",(counting_string))
-    pygame.quit()
-
+    
     t_mean=int(statistics.mean(question_times))
 
     if Name=="":Name="test"
@@ -326,6 +309,63 @@ def mmain(Name,lang,VERSION):
 
     # Data to be written
     if lang=="":lang="esp"
+
+
+
+    formula="por definir"
+
+
+
+
+    window.blit(bg_image, (0, 0))
+             # Definir las variables a mostrar
+    variable_1 = counting_string
+    variable_2 = str(t_mean)
+    variable_3 = lang
+    variable_4 = str(aciertos)
+    variable_5 = str(fallos)
+    variable_6= str(omision)
+    variable_7= formula
+    # Definir el color del texto
+    text_color = (255, 255, 255)
+    aux=150
+    ancho_pantalla = window.get_width()
+#   Renderizar las variables en la ventana
+    variable_1_text = font.render(str(variable_1), True, text_color)
+    window.blit(variable_1_text, (ancho_pantalla//2,aux+ 50))
+
+    variable_2_text = font.render(str(variable_2), True, text_color)
+    window.blit(variable_2_text, (ancho_pantalla//2,aux+ 100))
+
+    variable_3_text = font.render(str(variable_3), True, text_color)
+    window.blit(variable_3_text, (ancho_pantalla//2,aux+ 150))
+
+    variable_4_text = font.render(str(variable_4), True, text_color)
+    window.blit(variable_4_text, (ancho_pantalla//2,aux+ 200))
+
+    variable_5_text = font.render(str(variable_5), True, text_color)
+    window.blit(variable_5_text, (ancho_pantalla//2,aux+ 250))
+    variable_6_text = font.render(str(variable_6), True, text_color)
+    window.blit(variable_6_text, (ancho_pantalla//2,aux+ 300))
+
+    variable_7_text = font.render(str(variable_7), True, text_color)
+    window.blit(variable_7_text, (ancho_pantalla//2,aux+ 350))    
+    # Actualizar pantalla
+    pygame.display.update()  
+    pygame.time.wait(5000)    
+    pygame.quit()
+
+
+
+
+    # Actualizar pantalla
+    pygame.display.update()  
+    pygame.time.wait(1500)    
+
+    print("Tiempo total:",(counting_string))
+    pygame.quit()
+
+
     dictionary = {
         "name": ID_enmcr,
         "time-stamp":str(datetime.datetime.now()),

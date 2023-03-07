@@ -123,7 +123,7 @@ def level_menu():
     mainmenu._open(level)
 def explicacion_pepper():
     # subprocess.Popen("python pruebaPepper_01.py ", shell=True) 
-    subprocess.run(["python", "pruebaPepper_01.py"])
+    subprocess.run(["python", "feedbackPepper-tablet/pruebaPepper_01.py"])
     
 def explicacion_sintetizador():
     pygame.mixer.music.load('tmp.mp3')

@@ -1,7 +1,7 @@
 from naoqi import ALProxy
 import sys
 
-# Conexión al robot
+# Conexion al robot
 
 ip = "localhost"
 port = 32871
@@ -13,18 +13,18 @@ tts = ALProxy("ALTextToSpeech", ip, port)
 motion_service.setAngles(["HeadYaw", "HeadPitch", "RShoulderPitch", "RElbowRoll", "RWristYaw"],
                          [0.0, 0.0, -1.5, -0.5, 1.0], 0.1)
 
-# Seleccionar el mensaje en función de los argumentos de entrada
+# Seleccionar el mensaje en funcion de los argumentos de entrada
 if len(sys.argv) > 1:
     message = sys.argv[1]
 else:
-    message = "Buenos días"
+    message = "Buenos dias"
 
-if message == "Buenos días":
-    tts.say("Buenos días")
+if message == "Buenos dias":
+    tts.say("Buenos dias")
 elif message == "Buenas tardes":
     tts.say("Buenas tardes")
-elif message == "Adiós":
-    tts.say("Adiós")
+elif message == "Adios":
+    tts.say("Adios")
 else:
     tts.say("No entiendo lo que quieres decir.")
 
