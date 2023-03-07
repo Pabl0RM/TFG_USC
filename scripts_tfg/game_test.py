@@ -384,7 +384,7 @@ def mmain(Name,lang,VERSION):
     pygame.time.wait(1500)    
 
     print("Tiempo total:",(counting_string))
-    pygame.quit()
+    
 
 
     dictionary = {
@@ -406,3 +406,7 @@ def mmain(Name,lang,VERSION):
     # Writing to sample.json
     with open("ST_data.json", "w") as outfile:
         outfile.write(json_object)
+        
+
+        
+    pygame.quit()
