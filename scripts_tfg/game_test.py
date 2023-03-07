@@ -318,17 +318,32 @@ def mmain(Name,lang,VERSION):
 
 
     window.blit(bg_image, (0, 0))
-             # Definir las variables a mostrar
-    variable_1 = counting_string
-    variable_2 = str(t_mean)
-    variable_3 = lang
-    variable_4 = str(aciertos)
-    variable_5 = str(fallos)
-    variable_6= str(omision)
-    variable_7= formula
-    # Definir el color del texto
-    text_color = (255, 255, 255)
+    # Definir las variables a mostrar
+    variable_1 = "Tiempo total: " +counting_string
+    variable_2 = "Tiempo medio: " +str(t_mean)
+    variable_3 = "Idioma: " +lang
+    variable_4 = "Aciertos: " +str(aciertos)
+    variable_5 = "Fallos: " +str(fallos)
+    variable_6 = "Omisiones: " +str(omision)
+    variable_7 = "Puntuacion: " +formula
+
+
+            # Definir las dimensiones del rectángulo
+    rect_width = 350
+    rect_height = 400
     aux=150
+
+    # Crear el rectángulo de color negro
+    rect = pygame.Surface((rect_width, rect_height))
+    rect.fill((17, 177, 177))
+
+    # Renderizar el rectángulo en la ventana
+    window.blit(rect, ((window.get_width()//2)-50, aux + 50))
+
+
+    # Definir el color del texto
+    text_color = (0, 0, 0)
+
     ancho_pantalla = window.get_width()
 #   Renderizar las variables en la ventana
     variable_1_text = font.render(str(variable_1), True, text_color)
@@ -350,6 +365,12 @@ def mmain(Name,lang,VERSION):
 
     variable_7_text = font.render(str(variable_7), True, text_color)
     window.blit(variable_7_text, (ancho_pantalla//2,aux+ 350))    
+
+
+
+
+
+
     # Actualizar pantalla
     pygame.display.update()  
     pygame.time.wait(5000)    
