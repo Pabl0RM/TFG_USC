@@ -192,12 +192,13 @@ def mmain(Name,lang,VERSION,IP_port):
                         incorrect_image = pygame.transform.smoothscale(incorrect_image, (int(X*0.25),int( Y*0.25)))
 
                         # Definir posición de las imágenes
-                        image1_rect = image1.get_rect(center=(int(X*0.5),int( Y/5.4545454)))
+                        image1_rect  = image1.get_rect(center=(int(X*0.5),int( Y/3.5545454)))
                         # correct_image_rect = correct_image.get_rect(center=(int(X/5.33333),int( Y/1.7148)))
                         # incorrect_image_rect = incorrect_image.get_rect(center=(int(X/1.23),int( Y/1.7148)))
                         aux_r=random.random()
-                        if aux_r<0.7:correct_image_rect = correct_image.get_rect(center=(int(X/5.33333),int( Y/1.7148)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/1.23),int( Y/1.7148)))
-                        else:correct_image_rect = correct_image.get_rect(center=(int(X/1.23),int( Y/1.7148)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/5.33333),int( Y/1.7148)))
+                        if aux_r<0.7:correct_image_rect = correct_image.get_rect(center=(int(X/5.33333),int( Y/1.4)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/1.23),int( Y/1.4)))
+                        else:correct_image_rect = correct_image.get_rect(center=(int(X/1.23),int( Y/1.4)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/5.33333),int( Y/1.4)))
+
                         # # Reiniciar banderas
                         correct_image_clicked = False
                         incorrect_image_clicked = False
@@ -236,13 +237,14 @@ def mmain(Name,lang,VERSION,IP_port):
             incorrect_image = pygame.transform.smoothscale(incorrect_image, (int(X*0.25),int( Y*0.25)))
 
             # Definir posición de las imágenes
-            image1_rect = image1.get_rect(center=(int(X*0.5),int( Y/5.4545454)))
+            image1_rect =  image1.get_rect(center=(int(X*0.5),int( Y/3.5545454)))
+
             # correct_image_rect = correct_image.get_rect(center=(int(X/5.33333),int( Y/1.7148)))
             # incorrect_image_rect = incorrect_image.get_rect(center=(int(X/1.23),int( Y/1.7148)))
             aux_r=random.random()
-            if aux_r<0.7:correct_image_rect = correct_image.get_rect(center=(int(X/5.33333),int( Y/1.7148)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/1.23),int( Y/1.7148)))
-            else:correct_image_rect = correct_image.get_rect(center=(int(X/1.23),int( Y/1.7148)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/5.33333),int( Y/1.7148)))
-                            
+            if aux_r<0.7:correct_image_rect = correct_image.get_rect(center=(int(X/5.33333),int( Y/1.4)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/1.23),int( Y/1.4)))
+            else:correct_image_rect = correct_image.get_rect(center=(int(X/1.23),int( Y/1.4)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/5.33333),int( Y/1.4)))
+                    
             # Reiniciar banderas
             correct_image_clicked = False
             incorrect_image_clicked = False                
