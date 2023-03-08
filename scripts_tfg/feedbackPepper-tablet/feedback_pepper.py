@@ -4,7 +4,7 @@ import sys
 # Conexion al robot
 
 ip = "localhost"
-port = 32871
+port = 34537
 motion_service = ALProxy("ALMotion", ip, port)
 posture_service = ALProxy("ALRobotPosture", ip, port)
 tts = ALProxy("ALTextToSpeech", ip, port)

@@ -294,10 +294,8 @@ def mmain(Name,lang,VERSION):
     t_mean=int(statistics.mean(question_times))
 
     if Name=="":Name="test"
-    basic_encrypt=[ord(x)+17 for x in list(Name)]
-    ID_enmcr=basic_encrypt
-    # print(ID_enmcr)
-    #print([chr(x-17) for x in ID_enmcr])
+    
+    ID_enmcr=Name
     # change milliseconds into minutes, seconds, milliseconds
     counting_minutes = str(t_mean//60000).zfill(2)
     counting_seconds = str( (t_mean%60000)//1000 ).zfill(2)
@@ -365,23 +363,9 @@ def mmain(Name,lang,VERSION):
 
     variable_7_text = font.render(str(variable_7), True, text_color)
     window.blit(variable_7_text, (ancho_pantalla//2,aux+ 350))    
-
-
-
-
-
-
-    # Actualizar pantalla
-    pygame.display.update()  
     pygame.time.wait(5000)    
-    pygame.quit()
-
-
-
-
     # Actualizar pantalla
-    pygame.display.update()  
-    pygame.time.wait(1500)    
+    pygame.display.update()    
 
     print("Tiempo total:",(counting_string))
     
@@ -403,10 +387,11 @@ def mmain(Name,lang,VERSION):
     # Serializing json
     json_object = json.dumps(dictionary, indent=4)
 
-    # Writing to sample.json
+    # Writing to sample.jsonn
     with open("ST_data.json", "w") as outfile:
         outfile.write(json_object)
         
 
         
     pygame.quit()
+    subprocess.run(["python3", "firebase_waits.py"])

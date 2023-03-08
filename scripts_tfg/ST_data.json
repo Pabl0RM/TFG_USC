@@ -1,15 +1,10 @@
 {
-    "name": [
-        133,
-        118,
-        132,
-        133
-    ],
-    "time-stamp": "2023-03-07 12:05:33.076205",
-    "execution-time": "00:22:232",
-    "avg-test-time": "00:16:643",
-    "aciertos": 7,
-    "fallos": 4,
+    "name": "ed3788d240e4",
+    "time-stamp": "2023-03-07 13:31:57.820660",
+    "execution-time": "00:11:313",
+    "avg-test-time": "00:03:545",
+    "aciertos": 1,
+    "fallos": 1,
     "omisiones": 0,
     "multi-idioma": "esp",
     "Version": "1.0",

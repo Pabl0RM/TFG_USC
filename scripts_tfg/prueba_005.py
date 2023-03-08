@@ -7,6 +7,8 @@ from game_test import mmain
 import speech_recognition as sr
 import gtts
 from playsound import playsound
+import hashlib
+import random
 global count_down,seconds
 count_down = 5
 seconds=0
@@ -102,6 +104,21 @@ def name():
     
     # TODO funciones con ALSpeechRecognition para pepper?
     
+
+
+def token(length=12):
+
+
+    """Genera un token único de 30 caracteres como máximo."""
+    chars = list(
+        'ABCDEFGHIJKLMNOPQRSTUVWYZabcdefghijklmnopqrstuvwyz01234567890'
+    )
+    random.shuffle(chars)
+    chars = ''.join(chars)
+    sha1 = hashlib.sha1(chars.encode('utf8'))
+    token = sha1.hexdigest()
+    return token[:length] 
+
 def start_countdown():
     global start_ticks
     start_ticks = pygame.time.get_ticks()
@@ -189,7 +206,7 @@ while True:
                 # subprocess.Popen("python prueba_004.py ", shell=True)  
                 # subprocess.run(["python", "prueba_004.py"])
                 if seconds==5:
-                    mmain(Name,lang,VERSION)
+                    mmain(token(),lang,VERSION)
                     exit()             
         if event.type == pygame.QUIT:
             pygame.display.quit()
