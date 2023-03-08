@@ -320,7 +320,7 @@ def mmain(Name,lang,VERSION,IP_port):
     window.blit(bg_image, (0, 0))
     # Definir las variables a mostrar
     variable_1 = "Tiempo total: " +counting_string
-    variable_2 = "Tiempo medio: " +str(t_mean)
+    variable_2 = "Tiempo medio: " +str(meadia_counting_string)
     variable_3 = "Idioma: " +lang
     variable_4 = "Aciertos: " +str(aciertos)
     variable_5 = "Fallos: " +str(fallos)
@@ -338,7 +338,7 @@ def mmain(Name,lang,VERSION,IP_port):
     rect.fill((17, 177, 177))
 
     # Renderizar el rectángulo en la ventana
-    window.blit(rect, ((window.get_width()//2)-50, aux + 50))
+    window.blit(rect, ((window.get_width()//2)-50, aux ))
 
 
     # Definir el color del texto
@@ -395,6 +395,6 @@ def mmain(Name,lang,VERSION,IP_port):
         
 
         
-    
+    print(ID_enmcr)
     subprocess.run(["python3", "firebase_waits.py",ID_enmcr])
     pygame.quit()

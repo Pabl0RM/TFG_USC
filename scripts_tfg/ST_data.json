@@ -1,12 +1,12 @@
 {
-    "name": "fa593c41f23b",
-    "time-stamp": "2023-03-08 14:10:40.920524",
-    "execution-time": "00:26:380",
-    "avg-test-time": "00:19:111",
-    "aciertos": 7,
-    "fallos": 4,
+    "name": "b706d7504dd4",
+    "time-stamp": "2023-03-08 20:33:49.371429",
+    "execution-time": "00:22:707",
+    "avg-test-time": "00:16:801",
+    "aciertos": 5,
+    "fallos": 6,
     "omisiones": 0,
-    "multi-idioma": "gal",
+    "multi-idioma": "eng",
     "Version": "1.0",
     "SO": "Linux"
 }

@@ -2,13 +2,20 @@
 ### Repo para el TFG
             
 
-## Resources used
-* [Quasar Framework](https://quasar.dev/)
-* [Vue.js](https://vuejs.org/)
+### Repo dedicado al desarrollo del TFG 
 
 
-## What it deliveres
-* eCommerce UI template written in Vue.js/Quasar
+- 🔭 Se desarrollará una interface humano-robot usando una tablet y el robot Pepper
+- 🌱 Emplearemos librerías diversas, siendo las principales Pygame,Pygame-menu y PyNaoqi
+- 🏗  La tablet hará ed puente entre  los usuarios /pacientes el test y el Pepper
+- 💬 El objetivo es el de aplicar el test de las palmeras de forma que nuetro Pepper de asistencia sanitaria ayude en el proceso dando feedback
+- 📫 contancto pablo.riveira.murcia@rai.usc.es
+
+
+
+
+---
+
 
 
 ## Contributing
