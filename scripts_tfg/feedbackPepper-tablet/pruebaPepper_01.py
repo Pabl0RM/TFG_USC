@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import random
+import random,sys
 
 from naoqi import ALProxy
 import qi
@@ -9,9 +9,24 @@ import qi
 
 localhost:42067
 localhost:34537
+if len(sys.argv) < 2:
+    print('Error: Debe ingresar el nombre del archivo JSON como argumento.')
+    sys.exit()
+
+# Inicializar Firebase
+cred = credentials.Certificate("tfg-data-173bc-firebase-adminsdk-9ixg4-59eb87bd6d.json")
+firebase_admin.initialize_app(cred,{'databaseURL': 'https://tfg.firebaseio.com/'})
+db = firestore.client()
+
+# Leer el archivo JSON especificado
+filename = sys.argv[1]
 """
-tts=ALProxy("ALAnimatedSpeech","localhost", 34537)
-postura=ALProxy("ALRobotPosture","localhost", 34537)
+if len(sys.argv) < 2:
+    print('Error: Debe ingresar el nombre del archivo JSON como argumento.')
+    sys.exit()
+IP_l= sys.argv[1].split(":")
+tts=ALProxy("ALAnimatedSpeech",IP_l[0], int(IP_l[1]))
+postura=ALProxy("ALRobotPosture",IP_l[0],int(IP_l[1]))
 
 
 postura.goToPosture("Stand", 1.0)

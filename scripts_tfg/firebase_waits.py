@@ -43,7 +43,7 @@ def sync_local_data():
             continue
         with open(os.path.join(FOLDER_PATH, filename)) as f:
             data = json.load(f)
-        doc_name = 'data_' + str(sys.argv[2])
+        doc_name = 'data_' + str(sys.argv[1])
         db.collection('tfg').document(doc_name).set(data)
         os.remove(os.path.join(FOLDER_PATH, filename))
 
@@ -62,6 +62,7 @@ db = firestore.client()
 
 # Leer el archivo JSON especificado
 filename = sys.argv[1]
+filename="ST_data.json"
 with open(filename) as f:
     data = json.load(f)
 
@@ -73,7 +74,7 @@ while not is_connected() :
 
 if  is_connected():
     # Guardar los datos en Firestore
-    doc_name = 'data_' + str(sys.argv[2])
+    doc_name = 'data_' + str(sys.argv[1])
     db.collection('tfg').document(doc_name).set(data)
 
 # Guardar los datos localmente si no hay conexión a internet

@@ -140,7 +140,7 @@ def level_menu():
     mainmenu._open(level)
 def explicacion_pepper():
     # subprocess.Popen("python pruebaPepper_01.py ", shell=True) 
-    subprocess.run(["python", "feedbackPepper-tablet/pruebaPepper_01.py"])
+    subprocess.run(["python", "feedbackPepper-tablet/pruebaPepper_01.py",IP_port])
     
 def explicacion_sintetizador():
     pygame.mixer.music.load('tmp.mp3')
@@ -151,7 +151,12 @@ def explicacion_sintetizador():
     # Esperar a que termine la canción
     while pygame.mixer.music.get_busy():
         continue
-    
+
+def pepper_config(v):
+    global IP_port
+    IP_port=v
+    print(IP_port)
+
 def option_menu():
     mainmenu._open(options)
  
@@ -177,6 +182,9 @@ level.add.button('Terminal-Sintetizador',explicacion_sintetizador, font_size=100
 options = pygame_menu.Menu('Opciones', X, Y, theme=my_theme)
 options.add.selector('Idioma :', [('Español', "esp"), ('Inglés', "eng"), ('Galego', "gal")], onchange=set_leguage,font_size=100) 
 options.add.button('Nombre', rest, button_id='namee', font_size=100)
+options.add.text_input("IP:port-> ", default="", onchange=pepper_config)
+
+
 options.add.range_slider('Selector', 50, (0, 100), 1,
                       rangeslider_id='range_slider',
                       value_format=lambda x: str(int(x)), width = 200,font_size=100)
@@ -206,7 +214,7 @@ while True:
                 # subprocess.Popen("python prueba_004.py ", shell=True)  
                 # subprocess.run(["python", "prueba_004.py"])
                 if seconds==5:
-                    mmain(token(),lang,VERSION)
+                    mmain(token(),lang,VERSION,IP_port)
                     exit()             
         if event.type == pygame.QUIT:
             pygame.display.quit()

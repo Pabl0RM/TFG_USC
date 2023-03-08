@@ -1,7 +1,7 @@
 import pygame,time,os,random,json,statistics,datetime,platform,subprocess
 from pygame.locals import *
 global namee
-def mmain(Name,lang,VERSION):
+def mmain(Name,lang,VERSION,IP_port):
     # Inicializa Pygame
     pygame.init()
     clock = pygame.time.Clock()
@@ -135,7 +135,7 @@ def mmain(Name,lang,VERSION):
                         counting_rect2 = counting_text2.get_rect(center = feedback)
                         window.blit(counting_text2, counting_rect2)
                         pygame.display.update()
-                        subprocess.run(["python", "feedbackPepper-tablet/pruebaPepper_02.py"])
+                        subprocess.run(["python", "feedbackPepper-tablet/pruebaPepper_02.py",IP_port])
                         counting_time=counting_time-4000
                         pygame.time.wait(2000)
                         
@@ -152,7 +152,7 @@ def mmain(Name,lang,VERSION):
                         counting_rect2 = counting_text2.get_rect(center = feedback)
                         window.blit(counting_text2, counting_rect2)
                         pygame.display.update()
-                        subprocess.run(["python", "feedbackPepper-tablet/pruebaPepper_03.py"])
+                        subprocess.run(["python", "feedbackPepper-tablet/pruebaPepper_03.py",IP_port])
                         counting_time=counting_time-4000
                         pygame.time.wait(2000)
 
@@ -393,5 +393,6 @@ def mmain(Name,lang,VERSION):
         
 
         
+    
+    subprocess.run(["python3", "firebase_waits.py",ID_enmcr])
     pygame.quit()
-    subprocess.run(["python3", "firebase_waits.py"])
