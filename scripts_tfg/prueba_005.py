@@ -78,28 +78,28 @@ def name():
     #extraer nombre, speech recog
 
     #uso del micro
-    # r = sr.Recognizer()
-    # mic = sr.Microphone()
+    r = sr.Recognizer()
+    mic = sr.Microphone()
 
-    # # Escoitamos o que di o usuario co micro por defecto do equipo
-    # print("¡Te escucho!")
+    # Escoitamos o que di o usuario co micro por defecto do equipo
+    print("¡Te escucho!")
     
-    # reproduce_audio('Buenos dias, dime tu nombre')
-    # with mic as source:
-    #     audio = r.listen(source)
+    reproduce_audio('Buenos dias, dime tu nombre')
+    with mic as source:
+        audio = r.listen(source)
     
-    # # Transcribimos o audio a texto
-    # text = r.recognize_google(audio, language='es-ES')
-    # print("Creo que has dicho: \"" + text + "\"")
+    # Transcribimos o audio a texto
+    text = r.recognize_google(audio, language='es-ES')
+    print("Creo que has dicho: \"" + text + "\"")
 
-    # # Xeramos un novo discurso sintético a partir do texto anterior
-    # tts = gtts.gTTS(text, lang="es")
-    # tts.save("name.mp3")
-    # playsound("name.mp3")
-    # global Name
-    # Name=text
+    # Xeramos un novo discurso sintético a partir do texto anterior
+    tts = gtts.gTTS(text, lang="es")
+    tts.save("name.mp3")
+    playsound("name.mp3")
+    global Name
+    Name=text
 
-    Name="pablo"
+    # Name="pablo"
     print(Name)
     
     # TODO funciones con ALSpeechRecognition para pepper?
@@ -164,7 +164,8 @@ def rest():
     print(Name)
 mainmenu = pygame_menu.Menu('TFG', X, Y, theme=my_theme)
 
-mainmenu.add.button('Nombre', name, font_size=100)
+
+mainmenu.add.button("Nombre ", name,font_size=100)
 mainmenu.add.button('Empezar', start_the_game, font_size=100)
 mainmenu.add.button('Explicacion', level_menu, font_size=100)
 mainmenu.add.button('Opciones', option_menu, font_size=100)
@@ -182,7 +183,7 @@ level.add.button('Terminal-Sintetizador',explicacion_sintetizador, font_size=100
 options = pygame_menu.Menu('Opciones', X, Y, theme=my_theme)
 options.add.selector('Idioma :', [('Español', "esp"), ('Inglés', "eng"), ('Galego', "gal")], onchange=set_leguage,font_size=100) 
 options.add.button('Nombre', rest, button_id='namee', font_size=100)
-options.add.text_input("IP:port-> ", default="", onchange=pepper_config)
+options.add.text_input("IP:port-> ", default="", onchange=pepper_config,font_size=100)
 
 
 options.add.range_slider('Selector', 50, (0, 100), 1,

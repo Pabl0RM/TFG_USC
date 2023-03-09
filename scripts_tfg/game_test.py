@@ -1,5 +1,6 @@
 import pygame,time,os,random,json,statistics,datetime,platform,subprocess
 from pygame.locals import *
+import encuestas
 global namee
 def mmain(Name,lang,VERSION,IP_port):
     # Inicializa Pygame
@@ -164,7 +165,7 @@ def mmain(Name,lang,VERSION,IP_port):
                         pygame.draw.rect(window, (155,155,155), incorrect_image_rect, 10)
                         pygame.draw.rect(window, (155,155,155), image1_rect, 10)
                         pygame.display.update()
-                        pygame.time.wait(500)
+                        pygame.time.wait(1500)
                         
 
                     
@@ -174,7 +175,7 @@ def mmain(Name,lang,VERSION,IP_port):
                         pygame.draw.rect(window, (155,155,155), correct_image_rect, 10)
                         pygame.draw.rect(window, (155,155,155), image1_rect, 10)
                         pygame.display.update()
-                        pygame.time.wait(500)                        
+                        pygame.time.wait(1500)                        
                     
                                                 
                     try:                  
@@ -205,6 +206,24 @@ def mmain(Name,lang,VERSION,IP_port):
                         counter += 1
                         # print(counting_time)
                         counting_time=counting_time-2000
+                        if (correct_image_clicked ) and counter >=5:
+                            question_times.append(counting_time)
+                            aciertos+=1                    
+                            print("click")
+                            pygame.draw.rect(window, (155,155,155), incorrect_image_rect, 10)
+                            pygame.draw.rect(window, (155,155,155), image1_rect, 10)
+                            pygame.display.update()
+                            pygame.time.wait(1500)
+                        
+
+                    
+                        if incorrect_image_clicked and counter>=5:
+                            question_times.append(counting_time)
+                            fallos+=1                        
+                            pygame.draw.rect(window, (155,155,155), correct_image_rect, 10)
+                            pygame.draw.rect(window, (155,155,155), image1_rect, 10)
+                            pygame.display.update()
+                            pygame.time.wait(1500)   
                     except:
                         print("except")
                         running = False
@@ -312,7 +331,7 @@ def mmain(Name,lang,VERSION,IP_port):
 
 
 
-    formula="por definir"
+    formula=str(aciertos*0.1+3*0.5+(fallos+omision)*0.5)
 
 
 
@@ -370,8 +389,8 @@ def mmain(Name,lang,VERSION,IP_port):
     pygame.display.update()    
 
     print("Tiempo total:",(counting_string))
-    
-
+    pygame.time.wait(1500)  
+    results=encuestas.main()
 
     dictionary = {
         "name": ID_enmcr,
