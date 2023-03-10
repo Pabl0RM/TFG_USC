@@ -15,7 +15,16 @@
 
 
 ---
+- Proyecto lanzado en una VBox con linux-Ubuntu(64bits) version 20.04.1-Ubuntu
+    - Se emplearán 2 entornos de Python:
+        - Uno con versión Python2.7.15 para el manejo y comunicación con el Pepper empleando la version de pynaoqi-python2.7-2.5.7.1-linux64
+        - Otro con Python3.8.10 para el desarrollo de la aplicación,todo el backend necesario y el ML
+    - El archivo correspondiente de requirements.txt hace referencia a las librerías necesarias de Python3 para el funcioanmiento(en python2 solo necesitamos instalar localmente pynaoqi)
 
+
+
+
+---
 
 
 ## Contributing
