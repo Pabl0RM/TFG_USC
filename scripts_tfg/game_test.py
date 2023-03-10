@@ -300,7 +300,24 @@ def mmain(Name,lang,VERSION,IP_port):
         pygame.display.update()  
         clock.tick(25)   
         if counter == len(contiene_c):
+            if (correct_image_clicked ) and counter >=5:
+                question_times.append(counting_time)
+                aciertos+=1                    
+                print("click")
+                pygame.draw.rect(window, (155,155,155), incorrect_image_rect, 10)
+                pygame.draw.rect(window, (155,155,155), image1_rect, 10)
+                pygame.display.update()
+                pygame.time.wait(1500)
+            
 
+        
+            if incorrect_image_clicked and counter>=5:
+                question_times.append(counting_time)
+                fallos+=1                        
+                pygame.draw.rect(window, (155,155,155), correct_image_rect, 10)
+                pygame.draw.rect(window, (155,155,155), image1_rect, 10)
+                pygame.display.update()
+                pygame.time.wait(1500) 
 
 
             # Actualizar pantalla
@@ -390,6 +407,8 @@ def mmain(Name,lang,VERSION,IP_port):
 
     print("Tiempo total:",(counting_string))
     pygame.time.wait(1500)  
+    #encuestas
+    
     results=encuestas.main()
 
     dictionary = {
