@@ -1,3 +1,4 @@
+
 # TFG_USC
 ### Repo para el TFG
             
@@ -22,6 +23,7 @@
     - El archivo correspondiente de requirements.txt hace referencia a las librerías necesarias de Python3 para el funcioanmiento(en python2 solo necesitamos instalar localmente pynaoqi)
 
 -  TODO
+
             - Tiempos entre tríadas
             - Encuesta final de usabilidad/aceptación tecnológica y análisis
             - Retocar imgs+Mejoras visuales de la app
