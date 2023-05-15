@@ -431,7 +431,7 @@ def mmain(Name,lang,VERSION,IP_port):
     pygame.time.wait(1500)  
     #encuestas
     
-    results=encuestas.encuesta()
+    results=encuestas
 
     dictionary = {
         "name": ID_enmcr,
