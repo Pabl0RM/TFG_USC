@@ -135,8 +135,8 @@ def mmain(Name,lang,VERSION,IP_port):
                         counting_rect2 = counting_text2.get_rect(center = feedback)
                         window.blit(counting_text2, counting_rect2)
                         pygame.display.update()
-                        subprocess.run(["python", "feedbackPepper-tablet/pruebaPepper_02.py",IP_port])
-                        counting_time=counting_time-4000
+                        subprocess.run(["python", "feedbackPepper-tablet/pruebaPepper_03.py",IP_port])
+                        counting_time=counting_time-40000
                         pygame.time.wait(2000)
                         
 
@@ -152,8 +152,8 @@ def mmain(Name,lang,VERSION,IP_port):
                         counting_rect2 = counting_text2.get_rect(center = feedback)
                         window.blit(counting_text2, counting_rect2)
                         pygame.display.update()
-                        subprocess.run(["python", "feedbackPepper-tablet/pruebaPepper_03.py",IP_port])
-                        counting_time=counting_time-4000
+                        subprocess.run(["python", "feedbackPepper-tablet/pruebaPepper_02.py",IP_port])
+                        counting_time=counting_time-40000
                         pygame.time.wait(2000)
 
 
@@ -292,9 +292,10 @@ def mmain(Name,lang,VERSION,IP_port):
     print("------------------------------------------------")
 
 
-    
-    t_mean=int(statistics.mean(question_times))
-
+    try:
+        t_mean=int(statistics.mean(question_times))
+    except:
+        t_mean=0
     if Name=="":Name="test"
     
     ID_enmcr=Name

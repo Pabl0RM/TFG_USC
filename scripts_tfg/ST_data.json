@@ -1,12 +1,12 @@
 {
-    "name": "b706d7504dd4",
-    "time-stamp": "2023-03-08 20:33:49.371429",
-    "execution-time": "00:22:707",
-    "avg-test-time": "00:16:801",
-    "aciertos": 5,
-    "fallos": 6,
+    "name": "024e89500ca6",
+    "time-stamp": "2023-05-15 11:11:58.350555",
+    "execution-time": "00:13:252",
+    "avg-test-time": "00:04:068",
+    "aciertos": 2,
+    "fallos": 0,
     "omisiones": 0,
-    "multi-idioma": "eng",
+    "multi-idioma": "esp",
     "Version": "1.0",
     "SO": "Linux"
 }

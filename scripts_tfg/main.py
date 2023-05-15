@@ -182,7 +182,7 @@ level.add.button('Terminal-Sintetizador',explicacion_sintetizador, font_size=100
 options = pygame_menu.Menu('Opciones', X, Y, theme=my_theme)
 options.add.selector('Idioma :', [('Español', "esp"), ('Inglés', "eng"), ('Galego', "gal")], onchange=set_leguage,font_size=100) 
 options.add.button('Nombre', rest, button_id='namee', font_size=100)
-options.add.text_input("IP:port-> ", default="", onchange=pepper_config)
+options.add.text_input("IP:port-> ", default="localhost:33029", onreturn=pepper_config)
 
 
 options.add.range_slider('Selector', 50, (0, 100), 1,
