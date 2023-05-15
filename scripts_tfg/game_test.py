@@ -123,7 +123,7 @@ def mmain(Name,lang,VERSION,IP_port):
                     
                 
                 # Si se hizo clic en una imagen y el contador es menor a 10, cargar nuevas imágenes
-                if ((correct_image_clicked ) or incorrect_image_clicked) and counter <=len(contiene_c)-1:
+                if ((correct_image_clicked ) or incorrect_image_clicked) and counter <=len(contiene_c):
                     
                     window.blit(image1, image1_rect)
                     window.blit(correct_image, correct_image_rect)
@@ -293,7 +293,7 @@ def mmain(Name,lang,VERSION,IP_port):
         counting_seconds = str( (counting_time%60000)//1000 ).zfill(2)
         counting_millisecond = str(counting_time%1000).zfill(3)
 
-        counting_string = "t%s:%s:%s" % (counting_minutes, counting_seconds, counting_millisecond)
+        counting_string = "%s:%s:%s" % (counting_minutes, counting_seconds, counting_millisecond)
 
         counting_text = font.render(str(counting_string), 1, (0,0,0))
         counting_rect = counting_text.get_rect(center = feedback)
@@ -309,7 +309,7 @@ def mmain(Name,lang,VERSION,IP_port):
         # Actualizar pantalla
         pygame.display.update()  
         clock.tick(100)   
-        if counter == len(contiene_c):
+        if counter == len(contiene_c)+1:
             if (correct_image_clicked ) and counter >=5:
                 question_times.append(counting_time)
                 aciertos+=1                    
@@ -431,7 +431,7 @@ def mmain(Name,lang,VERSION,IP_port):
     pygame.time.wait(1500)  
     #encuestas
     
-    results=encuestas.main()
+    results=encuestas.encuesta()
 
     dictionary = {
         "name": ID_enmcr,
