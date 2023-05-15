@@ -1,49 +1,64 @@
 import pygame
 import pygame_menu
 from pygame.locals import *
-# Inicializar Pygame
-pygame.init()
-X,Y = pygame.display.set_mode().get_size()
 
-surface = pygame.display.set_mode((X, Y),RESIZABLE)
+def encuesta():
+    # Inicializar Pygame
+    pygame.init()
 
-# Crear la encuesta
+    # Tamaño de la ventana
+    ventana_ancho, ventana_alto = 800, 600
+    def answerr(value, difficulty):
+        global lang
+        lang=difficulty
+        print(difficulty)
+        print(value)
+        print(selector_id)
+    # Crear la encuesta
+    def survey_results(result):
+        respuestas = [("¿El robot Pepper es fácil de usar?", result[0]), 
+                      ("¿El robot Pepper es atractivo visualmente?", result[1]), 
+                      ("¿El robot Pepper es útil?", result[2]), 
+                      ("¿El robot Pepper es confiable?", result[3]), 
+                      ("¿El robot Pepper es fácil de entender?", result[4])]
+        print("Resultados de la encuesta:")
+        for pregunta, respuesta in respuestas:
+            print(f"{pregunta}: {respuesta}")
+        return respuestas
 
-def survey_results(result, data):
-    print(f"Resultados de la encuesta: {result}")
-    print(f"Datos adicionales: {data}")
+    # Crear la ventana y la superficie
+    ventana = pygame.display.set_mode((ventana_ancho, ventana_alto))
+    superficie = pygame.display.get_surface()
 
-survey_menu = pygame_menu.Menu("Encuesta de satisfacción", X, Y, theme=pygame_menu.themes.THEME_DARK)
+    # Crear el menú de la encuesta
+    encuesta_menu = pygame_menu.Menu("Encuesta de usabilidad del robot Pepper", ventana_ancho, ventana_alto, theme=pygame_menu.themes.THEME_DARK)
 
-# Agregar las preguntas a la encuesta
-question1 = "¿Está satisfecho con nuestro servicio?"
-question2 = "¿Recomendaría nuestro servicio a otros?"
-question3 = "¿Cómo evalúa la calidad de nuestro servicio?"
-question4 = "¿El tiempo de respuesta de nuestro servicio fue adecuado?"
-question5 = "¿Fue fácil de usar nuestro servicio?"
+    # Agregar las preguntas a la encuesta
+    preguntas = ["¿El robot Pepper es fácil de usar?", 
+                 "¿El robot Pepper es atractivo visualmente?", 
+                 "¿El robot Pepper es útil?", 
+                 "¿El robot Pepper es confiable?", 
+                 "¿El robot Pepper es fácil de entender?"]
 
-# Agregar las opciones de respuesta a la encuesta
-likert_options = [("1 - Muy insatisfecho", 1), ("2 - Insatisfecho", 2), ("3 - Neutral", 3), ("4 - Satisfecho", 4), ("5 - Muy satisfecho", 5)]
+    # Agregar las opciones de respuesta a la encuesta
+    opciones_respuesta = [("Muy en desacuerdo", 1), ("En desacuerdo", 2), ("Ligeramente en desacuerdo", 3), ("Neutral", 4), ("Ligeramente de acuerdo", 5), ("De acuerdo", 6), ("Muy de acuerdo", 7)]
 
-# Agregar las preguntas a la encuesta con las opciones de respuesta
-survey_menu.add.label(question1)
-survey_menu.add.selector("", likert_options, onchange=None)
-survey_menu.add.label(question2)
-survey_menu.add.selector("", likert_options, onchange=None)
-survey_menu.add.label(question3)
-survey_menu.add.selector("", likert_options, onchange=None)
-survey_menu.add.label(question4)
-survey_menu.add.selector("", likert_options, onchange=None)
-survey_menu.add.label(question5)
-survey_menu.add.selector("", likert_options, onchange=None)
+    # Agregar las preguntas a la encuesta con las opciones de respuesta
+    encuesta_menu.add.label("")
+    global selector_id
+    
+    for pregunta in preguntas:
+        selector_id=pregunta
+        encuesta_menu.add.label(pregunta)
+        encuesta_menu.add.selector("", opciones_respuesta, onchange=answerr, selector_id=pregunta)
 
-# Agregar un campo de texto para datos adicionales
-survey_menu.add.label("")
-survey_menu.add.label("--Datos adicionales--")
-survey_menu.add.text_input("Comentarios", default="")
+    # Agregar el botón para enviar la encuesta
+    encuesta_menu.add.label("")
+    encuesta_menu.add.button("Enviar", survey_results, pygame_menu.events.BACK)
+    encuesta_menu.add.button("Salir", pygame_menu.events.EXIT)
 
-# Agregar el botón para enviar la encuesta
-survey_menu.add.button("Enviar", survey_results, pygame_menu.events.BACK)
-survey_menu.add.button('Salir', pygame_menu.events.EXIT)
-# Ejecutar la encuesta
-survey_menu.mainloop(surface)
+    # Ejecutar la encuesta
+    encuesta_menu.mainloop(superficie)
+
+if __name__ == "__main__":
+    encuesta()

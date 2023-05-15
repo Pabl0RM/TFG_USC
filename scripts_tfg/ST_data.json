@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "name": "024e89500ca6",
     "time-stamp": "2023-05-15 11:11:58.350555",
     "execution-time": "00:13:252",
@@ -7,6 +8,16 @@
     "fallos": 0,
     "omisiones": 0,
     "multi-idioma": "esp",
+=======
+    "name": "ae7ba5423c57",
+    "time-stamp": "2023-03-09 19:15:00.400761",
+    "execution-time": "00:32:678",
+    "avg-test-time": "00:24:904",
+    "aciertos": 7,
+    "fallos": 4,
+    "omisiones": 0,
+    "multi-idioma": "gal",
+>>>>>>> c3bf5d0cc36394bbc65f5b6c982a852b383c67fd
     "Version": "1.0",
     "SO": "Linux"
 }
