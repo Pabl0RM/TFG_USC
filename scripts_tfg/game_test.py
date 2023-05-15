@@ -1,4 +1,4 @@
-import pygame,time,os,random,json,statistics,datetime,platform,subprocess
+import pygame,time,os,random,json,statistics,datetime,platform,subprocess,sys
 from pygame.locals import *
 import encuestas
 global namee
@@ -12,6 +12,7 @@ def mmain(Name,lang,VERSION,IP_port):
     aciertos=0
     fallos=0
     omision=0
+    acumulativo=0
     # Definir tamaño de la ventana
     X=800
     Y=600
@@ -84,16 +85,20 @@ def mmain(Name,lang,VERSION,IP_port):
     last_click_time=start_time
     counter+=1
     feedback=(window.get_width()//2,(window.get_height()//2)+100)
+    
+    
     while running:
-        counting_time = pygame.time.get_ticks() - start_time
-        window.blit(bg_image, (0, 0))
+        counting_time = pygame.time.get_ticks() - start_time-acumulativo
+        # print(counting_time)
         
-        counting_minutes = str(counting_time//60000).zfill(2)
-        counting_seconds = str( (counting_time%60000)//1000 ).zfill(2)
-        counting_millisecond = str(counting_time%1000).zfill(3)
+        # window.blit(bg_image, (0, 0))
+        
+        # counting_minutes = str(counting_time//60000).zfill(2)
+        # counting_seconds = str( (counting_time%60000)//1000 ).zfill(2)
+        # counting_millisecond = str(counting_time%1000).zfill(3)
 
-        counting_string = "%s:%s:%s" % (counting_minutes, counting_seconds, counting_millisecond)            
-        print(counting_string)        
+        # counting_string = "%s:%s:%s" % (counting_minutes, counting_seconds, counting_millisecond)            
+        # print(counting_string)        
         
         
         for event in pygame.event.get():
@@ -125,8 +130,7 @@ def mmain(Name,lang,VERSION,IP_port):
                     window.blit(incorrect_image, incorrect_image_rect)              
                     
                     if (correct_image_clicked ) and counter <=4:
-                        print("click")
-                        
+                        print("correcta")
                         question_times.append(counting_time)
                         aciertos+=1                     
                         pygame.draw.rect(window, (0, 255, 0), incorrect_image_rect, 10)
@@ -136,14 +140,12 @@ def mmain(Name,lang,VERSION,IP_port):
                         counting_rect2 = counting_text2.get_rect(center = feedback)
                         window.blit(counting_text2, counting_rect2)
                         pygame.display.update()
+                        aux=pygame.time.get_ticks()
                         subprocess.run(["python", "feedbackPepper-tablet/pruebaPepper_03.py",IP_port])
-                        counting_time=counting_time-40000
-                        pygame.time.wait(2000)
-                        
+                        acumulativo+=pygame.time.get_ticks()-aux
 
-                    
                     if incorrect_image_clicked and counter <=4:
-                        
+                        print("incorrecta")
                         question_times.append(counting_time)
                         fallos+=1                     
                         pygame.draw.rect(window, (255, 0, 0), correct_image_rect, 10)
@@ -153,9 +155,10 @@ def mmain(Name,lang,VERSION,IP_port):
                         counting_rect2 = counting_text2.get_rect(center = feedback)
                         window.blit(counting_text2, counting_rect2)
                         pygame.display.update()
-                        subprocess.run(["python", "feedbackPepper-tablet/pruebaPepper_02.py",IP_port])
-                        counting_time=counting_time-40000
-                        pygame.time.wait(2000)
+                        aux=pygame.time.get_ticks()
+                        subprocess.run(["python", "feedbackPepper-tablet/pruebaPepper_02.py",IP_port])                    
+                        acumulativo+=pygame.time.get_ticks()-aux
+                        
 
 
                     if (correct_image_clicked ) and counter >=5:
@@ -165,7 +168,9 @@ def mmain(Name,lang,VERSION,IP_port):
                         pygame.draw.rect(window, (155,155,155), incorrect_image_rect, 10)
                         pygame.draw.rect(window, (155,155,155), image1_rect, 10)
                         pygame.display.update()
-                        pygame.time.wait(1500)
+                        aux=pygame.time.get_ticks()
+                        pygame.time.wait(3000)
+                        acumulativo+=pygame.time.get_ticks()-aux
                         
 
                     
@@ -175,7 +180,9 @@ def mmain(Name,lang,VERSION,IP_port):
                         pygame.draw.rect(window, (155,155,155), correct_image_rect, 10)
                         pygame.draw.rect(window, (155,155,155), image1_rect, 10)
                         pygame.display.update()
-                        pygame.time.wait(1500)                        
+                        aux=pygame.time.get_ticks()
+                        pygame.time.wait(3000)
+                        acumulativo+=pygame.time.get_ticks()-aux                  
                     
                                                 
                     try:                  
@@ -205,7 +212,7 @@ def mmain(Name,lang,VERSION,IP_port):
                         incorrect_image_clicked = False
                         counter += 1
                         # print(counting_time)
-                        counting_time=counting_time-2000
+                        # counting_time=counting_time-2000
                         if (correct_image_clicked ) and counter >=5:
                             question_times.append(counting_time)
                             aciertos+=1                    
@@ -214,6 +221,7 @@ def mmain(Name,lang,VERSION,IP_port):
                             pygame.draw.rect(window, (155,155,155), image1_rect, 10)
                             pygame.display.update()
                             pygame.time.wait(1500)
+                            acumulativo+=pygame.time.get_ticks()-1500
                         
 
                     
@@ -224,6 +232,7 @@ def mmain(Name,lang,VERSION,IP_port):
                             pygame.draw.rect(window, (155,155,155), image1_rect, 10)
                             pygame.display.update()
                             pygame.time.wait(1500)   
+                            acumulativo+=pygame.time.get_ticks()-1500
                     except:
                         print("except")
                         running = False
@@ -272,16 +281,19 @@ def mmain(Name,lang,VERSION,IP_port):
             time_without_click=0
             last_click_time =  pygame.time.get_ticks() 
         else:
-            print("\n")
+            print("")
         # Dibujar tiempo
         
 
         # change milliseconds into minutes, seconds, milliseconds
+        # counting_time = pygame.time.get_ticks() - start_time
+        # print('finito',counting_time)
+        
         counting_minutes = str(counting_time//60000).zfill(2)
         counting_seconds = str( (counting_time%60000)//1000 ).zfill(2)
         counting_millisecond = str(counting_time%1000).zfill(3)
 
-        counting_string = "%s:%s:%s" % (counting_minutes, counting_seconds, counting_millisecond)
+        counting_string = "t%s:%s:%s" % (counting_minutes, counting_seconds, counting_millisecond)
 
         counting_text = font.render(str(counting_string), 1, (0,0,0))
         counting_rect = counting_text.get_rect(center = feedback)
@@ -292,13 +304,11 @@ def mmain(Name,lang,VERSION,IP_port):
         window.blit(incorrect_image, incorrect_image_rect)
         window.blit(counting_text, counting_rect)
         
-
-
-
+  
 
         # Actualizar pantalla
         pygame.display.update()  
-        clock.tick(25)   
+        clock.tick(100)   
         if counter == len(contiene_c):
             if (correct_image_clicked ) and counter >=5:
                 question_times.append(counting_time)
@@ -322,8 +332,19 @@ def mmain(Name,lang,VERSION,IP_port):
 
             # Actualizar pantalla
             pygame.display.update()  
-            time.sleep(1.5)
+            # time.sleep(1.5)
             running = False   
+            print(counting_time)
+        
+        window.blit(bg_image, (0, 0))
+        
+        counting_minutes = str(counting_time//60000).zfill(2)
+        counting_seconds = str( (counting_time%60000)//1000 ).zfill(2)
+        counting_millisecond = str(counting_time%1000).zfill(3)
+
+        counting_string = "%s:%s:%s" % (counting_minutes, counting_seconds, counting_millisecond)            
+        print(counting_string) 
+        print(acumulativo) 
     print("----------------------Fin de juego----------------------\n\n\n")
     print("------------------------------------------------")
 

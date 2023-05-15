@@ -154,7 +154,10 @@ def explicacion_sintetizador():
 
 def pepper_config(v):
     global IP_port
-    IP_port=v
+    try:
+        IP_port=v
+    except:
+        IP_port="localhost:33029"
     print(IP_port)
 
 def option_menu():
@@ -182,7 +185,7 @@ level.add.button('Terminal-Sintetizador',explicacion_sintetizador, font_size=100
 options = pygame_menu.Menu('Opciones', X, Y, theme=my_theme)
 options.add.selector('Idioma :', [('Español', "esp"), ('Inglés', "eng"), ('Galego', "gal")], onchange=set_leguage,font_size=100) 
 options.add.button('Nombre', rest, button_id='namee', font_size=100)
-options.add.text_input("IP:port-> ", default="", onchange=pepper_config)
+options.add.text_input("IP:port-> ", default="localhost:33029", onreturn=pepper_config)
 
 
 options.add.range_slider('Selector', 50, (0, 100), 1,
@@ -214,7 +217,11 @@ while True:
                 # subprocess.Popen("python prueba_004.py ", shell=True)  
                 # subprocess.run(["python", "prueba_004.py"])
                 if seconds==5:
-                    mmain(token(),lang,VERSION,IP_port)
+                    try:
+                        mmain(token(),lang,VERSION,IP_port)
+                    except:
+                        IP_port="localhost:33029"
+                        mmain(token(),lang,VERSION,IP_port)
                     exit()             
         if event.type == pygame.QUIT:
             pygame.display.quit()
