@@ -453,7 +453,9 @@ def mmain(Name,lang,VERSION,IP_port):
     # Writing to sample.jsonn
     with open("ST_data.json", "w") as outfile:
         outfile.write(json_object)
-    pygame.quit()
+    pygame.display.quit()
+    with open("tmpp.txt", "w") as outfile:
+        outfile.write(IP_port)    
     import encuestas
     encuestas.main()
     

@@ -54,15 +54,18 @@ def write_json(new_data, filename='ST_data.json'):
 def show_question():
     menu.clear()
     menu.add.label(preguntas[current_question])
-    menu.add.selector("Respuesta", [("1", 1), ("2", 2), ("3", 3), ("4", 4), ("5", 5)], onchange=on_answer_change)
+    menu.add.selector("Puntua", [("1", 1), ("2", 2), ("3", 3), ("4", 4), ("5", 5)], onchange=on_answer_change)
     menu.add.button("Anterior", previous_question)
     menu.add.button("Siguiente", next_question)
     if current_question == len(preguntas) - 1:
         menu.add.button("Enviar", imprimir_respuestas)
     menu.add.button("Salir", pygame_menu.events.EXIT)
+    
 
 # Función para manejar el cambio de respuesta
 def on_answer_change(value, index):
+    
+   
     # Guardar la respuesta en algún lugar (puedes usar una lista, diccionario, etc.)
     # Por ejemplo, puedes crear una lista llamada 'respuestas' fuera de esta función y hacer:
     respuestas[current_question]=index
@@ -73,14 +76,24 @@ def previous_question():
     global current_question
     if current_question > 0:
         current_question -= 1
+    # IP_port=open('tmpp.txt').read()
+    # subprocess.run(["python", "pepper_dice3.py",IP_port,str(current_question)])    
     show_question()
-
+    
+    IP_port=open('tmpp.txt').read()
+    subprocess.run(["python", "pepper_dice3.py",IP_port,str(current_question)])     
+    
 # Función para pasar a la siguiente pregunta
 def next_question():
     global current_question
     if current_question < len(preguntas) - 1:
         current_question += 1
+    # IP_port=open('tmpp.txt').read()
+    # subprocess.run(["python", "pepper_dice3.py",IP_port,str(current_question)]) 
     show_question()
+    
+    IP_port=open('tmpp.txt').read()
+    subprocess.run(["python", "pepper_dice3.py",IP_port,str(current_question)])     
 
 # Función para imprimir las respuestas
 def imprimir_respuestas():
@@ -102,9 +115,11 @@ def imprimir_respuestas():
         # print(respuestas)
         print(resp)
         write_json(resp)
+        f = open('ST_data.json')
+        j=json.load(f)
         #input()
 
-        # subprocess.run(["python3", "firebase_waits.py",j["name"]])        
+        subprocess.run(["python3", "firebase_waits.py",j["name"]])        
         pygame.quit()
         quit()
      
@@ -127,7 +142,7 @@ def main():
         screen.fill((0, 0, 0))
         menu.update(events)
         menu.draw(screen)
-
+    
         # Actualizar la pantalla
         pygame.display.update()
 
