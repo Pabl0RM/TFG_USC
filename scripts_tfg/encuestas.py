@@ -48,7 +48,7 @@ def write_json(new_data, filename='ST_data.json'):
         file_data["respuestas"]=(new_data)
         # Sets file's current position at offset.
         file.seek(0)
-        # convert back to json.
+        # convert back to json
         json.dump(file_data, file, indent = 4)
 # Función para mostrar la pregunta actual
 def show_question():
