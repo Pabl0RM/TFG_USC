@@ -431,8 +431,8 @@ def mmain(Name,lang,VERSION,IP_port):
     pygame.time.wait(1500)  
     #encuestas
     
-    results=encuestas
 
+    
     dictionary = {
         "name": ID_enmcr,
         "time-stamp":str(datetime.datetime.now()),
@@ -440,6 +440,7 @@ def mmain(Name,lang,VERSION,IP_port):
         "avg-test-time": meadia_counting_string,
         "aciertos": aciertos,
         "fallos": fallos,
+        
         "omisiones": omision,
         "multi-idioma":lang,
         "Version":VERSION,
@@ -452,9 +453,6 @@ def mmain(Name,lang,VERSION,IP_port):
     # Writing to sample.jsonn
     with open("ST_data.json", "w") as outfile:
         outfile.write(json_object)
-        
 
-        
-    print(ID_enmcr)
-    subprocess.run(["python3", "firebase_waits.py",ID_enmcr])
-    pygame.quit()
+    encuestas.main()
+    

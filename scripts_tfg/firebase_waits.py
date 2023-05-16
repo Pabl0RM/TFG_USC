@@ -76,7 +76,7 @@ if  is_connected():
     # Guardar los datos en Firestore
     doc_name = 'data_' + str(sys.argv[1])
     db.collection('tfg').document(doc_name).set(data)
-
+    print("Todo bien")
 # Guardar los datos localmente si no hay conexión a internet
 if not is_connected():
     save_local_data(filename, data)
