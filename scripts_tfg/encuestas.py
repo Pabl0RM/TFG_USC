@@ -1,8 +1,6 @@
-import pygame,sys,os,subprocess
-import pygame_menu,json
-
-
-# ID_enmcr='error'
+import pygame
+import pygame_menu
+import json,subprocess
 def escribir_archivo_texto( contenido):
     with open("tmp.txt", 'w') as archivo:
         archivo.write(str(contenido))
@@ -24,73 +22,106 @@ def borrar_archivo_texto():
 pygame.init()
 
 # Definir el tamaño de la pantalla
-SCREEN_WIDTH = 1000
-SCREEN_HEIGHT = 1000
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+X, Y = 800, 600
+screen = pygame.display.set_mode((X, Y))
 
 # Crear un menú con Pygame-menu
-menu = pygame_menu.Menu("Encuesta de usabilidad del robot Pepper", SCREEN_HEIGHT, SCREEN_WIDTH, theme=pygame_menu.themes.THEME_DARK)
-
+menu = pygame_menu.Menu("Encuesta de usabilidad del robot Pepper", X, Y, theme=pygame_menu.themes.THEME_DARK)
 
 # Lista de preguntas
-preguntas = ["¿El robot Pepper es fácil de usar?", 
-                 "¿El robot Pepper es atractivo visualmente?", 
-                 "¿El robot Pepper es útil?", 
-                 "¿El robot Pepper es confiable?", 
-                 "¿El robot Pepper es fácil de entender?"]
+preguntas = [
+    "¿El robot Pepper es fácil de usar?",
+    "¿El robot Pepper es atractivo visualmente?",
+    "¿El robot Pepper es útil?",
+    "¿El robot Pepper es confiable?",
+    "¿El robot Pepper es fácil de entender?"
+]
+respuestas=[None]*5
 
-# Agregar opciones para cada pregunta
-for pregunta in preguntas:
-    menu.add.selector(pregunta, [('1', 1), ('2', 2), ('3', 3), ('4', 4), ('5', 5)])
+# Variable para controlar el índice de la pregunta actual
+current_question = 0
+def write_json(new_data, filename='ST_data.json'):
+    with open(filename,'r+') as file:
+          # First we load existing data into a dict.
+        file_data = json.load(file)
+        # Join new_data with file_data inside emp_details
+        file_data["respuestas"]=(new_data)
+        # Sets file's current position at offset.
+        file.seek(0)
+        # convert back to json.
+        json.dump(file_data, file, indent = 4)
+# Función para mostrar la pregunta actual
+def show_question():
+    menu.clear()
+    menu.add.label(preguntas[current_question])
+    menu.add.selector("Respuesta", [("1", 1), ("2", 2), ("3", 3), ("4", 4), ("5", 5)], onchange=on_answer_change)
+    menu.add.button("Anterior", previous_question)
+    menu.add.button("Siguiente", next_question)
+    if current_question == len(preguntas) - 1:
+        menu.add.button("Enviar", imprimir_respuestas)
+    menu.add.button("Salir", pygame_menu.events.EXIT)
 
+# Función para manejar el cambio de respuesta
+def on_answer_change(value, index):
+    # Guardar la respuesta en algún lugar (puedes usar una lista, diccionario, etc.)
+    # Por ejemplo, puedes crear una lista llamada 'respuestas' fuera de esta función y hacer:
+    respuestas[current_question]=index
+    pass
+
+# Función para pasar a la pregunta anterior
+def previous_question():
+    global current_question
+    if current_question > 0:
+        current_question -= 1
+    show_question()
+
+# Función para pasar a la siguiente pregunta
+def next_question():
+    global current_question
+    if current_question < len(preguntas) - 1:
+        current_question += 1
+    show_question()
 
 # Función para imprimir las respuestas
 def imprimir_respuestas():
-    data=[ii for ii,e in enumerate(menu.get_input_data())]
-    data2=[e for ii,e in enumerate(menu.get_input_data())]
-    
-    # print(data)
-    # print(data2)
-    resp=''
-    for i, pregunta in enumerate(preguntas):
-        respuesta = menu.get_input_data()
-        # print(data[i])
-        # print(data2[i])
-        # # respuesta[data[i]] = respuesta.pop(data2[i])
-        # print(respuesta)
-        print(pregunta+' '+str(respuesta[data2[i]][0][0]))
-        # resp+=str(data[i])+str(respuesta[data2[i]][0][0])+"\n"
-        resp+=str(respuesta[data2[i]][0][0])+"\n"
-    
-    escribir_archivo_texto(resp)
-    
-    #print(borrar_archivo_texto())
-    respuestas=borrar_archivo_texto()
-    # print(respuestas)
-    f = open('ST_data.json')
-    j=json.load(f)
-    # print(j)
-    # print(j["name"])
-    #input()
-    subprocess.run(["python3", "firebase_waits.py",j["name"]])
-    
-    pygame.quit()
-    quit()
 
-# Agregar botones al menú
-menu.add.button('Enviar', imprimir_respuestas)
-menu.add.button('Salir', pygame_menu.events.EXIT)
+        # Obtener todas las respuestas guardadas
+
+        resp=''
+        for i, pregunta in enumerate(preguntas):
+
+            # # respuesta[data[i]] = respuesta.pop(data2[i])
+            print(respuestas)
+            print(pregunta+' '+str(respuestas[i]))
+            # resp+=str(data[i])+str(respuesta[data2[i]][0][0])+"\n"
+            resp+=str(respuestas[i])+"\n"
+
+        # Aquí puedes hacer lo que necesites con las respuestas (guardar en archivo, enviar a servidor, etc.)
+        # escribir_archivo_texto(resp)
+        # respuestas=borrar_archivo_texto()
+        # print(respuestas)
+        print(resp)
+        write_json(resp)
+        #input()
+
+        # subprocess.run(["python3", "firebase_waits.py",j["name"]])        
+        pygame.quit()
+        quit()
+     
+
+# Mostrar la primera pregunta
+
+show_question()
 
 # Bucle principal del juego
 def main():
-
     while True:
         # Manejar eventos de Pygame
         events = pygame.event.get()
         for event in events:
             if event.type == pygame.QUIT:
                 pygame.quit()
-                #quit()
+                quit()
 
         # Dibujar el menú
         screen.fill((0, 0, 0))
@@ -99,5 +130,7 @@ def main():
 
         # Actualizar la pantalla
         pygame.display.update()
-# main()
 
+# Llamar a la función principal
+if __name__ == "__main__":
+    main()

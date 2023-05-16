@@ -1,6 +1,6 @@
 import pygame,time,os,random,json,statistics,datetime,platform,subprocess,sys
 from pygame.locals import *
-import encuestas
+
 global namee
 def mmain(Name,lang,VERSION,IP_port):
     # Inicializa Pygame
@@ -453,6 +453,7 @@ def mmain(Name,lang,VERSION,IP_port):
     # Writing to sample.jsonn
     with open("ST_data.json", "w") as outfile:
         outfile.write(json_object)
-
+    pygame.quit()
+    import encuestas
     encuestas.main()
     
