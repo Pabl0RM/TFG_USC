@@ -50,6 +50,7 @@ def write_json(new_data, filename='ST_data.json'):
         file.seek(0)
         # convert back to json
         json.dump(file_data, file, indent = 4)
+        #print("escrito",file_data)
 # Función para mostrar la pregunta actual
 def show_question():
     menu.clear()
@@ -81,7 +82,7 @@ def previous_question():
     show_question()
     
     IP_port=open('tmpp.txt').read()
-    subprocess.run(["python", "pepper_dice3.py",IP_port,str(current_question)])     
+    subprocess.run(["python", "pepper_dice3.py",IP_port,str(current_question),volu])     
     
 # Función para pasar a la siguiente pregunta
 def next_question():
@@ -93,7 +94,7 @@ def next_question():
     show_question()
     
     IP_port=open('tmpp.txt').read()
-    subprocess.run(["python", "pepper_dice3.py",IP_port,str(current_question)])     
+    subprocess.run(["python", "pepper_dice3.py",IP_port,str(current_question),volu])     
 
 # Función para imprimir las respuestas
 def imprimir_respuestas():
@@ -129,7 +130,9 @@ def imprimir_respuestas():
 show_question()
 
 # Bucle principal del juego
-def main():
+def main(vol):
+    global volu
+    volu=vol
     while True:
         # Manejar eventos de Pygame
         events = pygame.event.get()

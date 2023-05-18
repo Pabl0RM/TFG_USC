@@ -2,7 +2,7 @@ import pygame,time,os,random,json,statistics,datetime,platform,subprocess,sys
 from pygame.locals import *
 
 global namee
-def mmain(Name,lang,VERSION,IP_port):
+def mmain(Name,lang,VERSION,IP_port,vol):
     # Inicializa Pygame
     pygame.init()
     clock = pygame.time.Clock()
@@ -141,7 +141,7 @@ def mmain(Name,lang,VERSION,IP_port):
                         window.blit(counting_text2, counting_rect2)
                         pygame.display.update()
                         aux=pygame.time.get_ticks()
-                        subprocess.run(["python", "feedbackPepper-tablet/pruebaPepper_03.py",IP_port])
+                        subprocess.run(["python", "feedbackPepper-tablet/pruebaPepper_03.py",IP_port,vol])
                         acumulativo+=pygame.time.get_ticks()-aux
 
                     if incorrect_image_clicked and counter <=4:
@@ -156,7 +156,7 @@ def mmain(Name,lang,VERSION,IP_port):
                         window.blit(counting_text2, counting_rect2)
                         pygame.display.update()
                         aux=pygame.time.get_ticks()
-                        subprocess.run(["python", "feedbackPepper-tablet/pruebaPepper_02.py",IP_port])                    
+                        subprocess.run(["python", "feedbackPepper-tablet/pruebaPepper_02.py",IP_port,vol])                    
                         acumulativo+=pygame.time.get_ticks()-aux
                         
 
@@ -457,5 +457,5 @@ def mmain(Name,lang,VERSION,IP_port):
     with open("tmpp.txt", "w") as outfile:
         outfile.write(IP_port)    
     import encuestas
-    encuestas.main()
+    encuestas.main(vol)
     

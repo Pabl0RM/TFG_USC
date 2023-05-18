@@ -10,13 +10,19 @@ import qi,subprocess,sys
 localhost:42067
 """
 if len(sys.argv) < 2:
-    print('Error: Debe ingresar el nombre del archivo JSON como argumento.')
+    print('Error: Debe ingresar IP:Port como argumento.')
     sys.exit()
 IP_l= sys.argv[1].split(":")
-tts=ALProxy("ALAnimatedSpeech",IP_l[0], int(IP_l[1]))
+tts=ALProxy("ALTextToSpeech",IP_l[0], int(IP_l[1]))
 postura=ALProxy("ALRobotPosture",IP_l[0],int(IP_l[1]))
 
+try :
+    vol=float(sys.argv[2])*0.01
+    tts.setVolume(vol)
+except:
+    tts.setVolume(1)
 
+print(tts.getVolume())
 
 postura.goToPosture("Stand", 1.0)
 

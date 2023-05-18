@@ -20,22 +20,24 @@ my_font = pygame_menu.font.FONT_OPEN_SANS
 
 # Crea el tema con la fuente personalizada
 my_theme = pygame_menu.themes.Theme(
-    background_color=(228, 230, 246),
+    background_color=(0, 18, 40),
     scrollbar_shadow=True,
     scrollbar_slider_color=(150, 200, 230),
     scrollbar_slider_hover_color=(123, 173, 202),
     scrollbar_slider_pad=2,
     selection_color=(100, 62, 132),
-    title_background_color=(62, 149, 195),
+    title_background_color=(0, 32, 64),
     title_font_color=(228, 230, 246),
     title_font_shadow=True,
-    widget_font_color=(61, 170, 220),
+    widget_font_color=(0, 136, 204),
     title_font_size=150,
     widget_font_size=150
 
 )
 # Definir la versión del juego
 VERSION = "1.0"
+
+
 
 
 
@@ -46,7 +48,7 @@ Y=1060
 
 
 X,Y = pygame.display.set_mode().get_size()
-
+X,Y=X,Y-50
 surface = pygame.display.set_mode((X, Y),RESIZABLE)
 # Configurar el temporizador
 clock = pygame.time.Clock()
@@ -58,9 +60,11 @@ def reproduce_audio(text):
     tts = gtts.gTTS(text, lang="es",tld='es')
     tts.save(text[0]+".mp3")
     playsound(text[0]+".mp3")
-    
-    
-
+   
+def volumen_pepper(x):
+        global vol 
+        print(x)
+        vol=str(x)
 
 
 
@@ -140,7 +144,7 @@ def level_menu():
     mainmenu._open(level)
 def explicacion_pepper():
     # subprocess.Popen("python pruebaPepper_01.py ", shell=True) 
-    subprocess.run(["python", "feedbackPepper-tablet/pruebaPepper_01.py",IP_port])
+    subprocess.run(["python", "feedbackPepper-tablet/pruebaPepper_01.py",IP_port,vol])
     
 def explicacion_sintetizador():
     pygame.mixer.music.load('tmp.mp3')
@@ -167,7 +171,7 @@ def rest():
     print(Name)
 mainmenu = pygame_menu.Menu('TFG', X, Y, theme=my_theme)
 
-mainmenu.add.button('Nombre', name, font_size=100)
+# mainmenu.add.button('Nombre', name, font_size=100)
 mainmenu.add.button('Empezar', start_the_game, font_size=100)
 mainmenu.add.button('Explicacion', level_menu, font_size=100)
 mainmenu.add.button('Opciones', option_menu, font_size=100)
@@ -183,14 +187,14 @@ level.add.button('Terminal-Sintetizador',explicacion_sintetizador, font_size=100
 
 
 options = pygame_menu.Menu('Opciones', X, Y, theme=my_theme)
-options.add.selector('Idioma :', [('Español', "esp"), ('Inglés', "eng"), ('Galego', "gal")], onchange=set_leguage,font_size=100) 
-options.add.button('Nombre', rest, button_id='namee', font_size=100)
+options.add.selector('Idioma ', [('Español', "esp"), ('Inglés', "eng"), ('Galego', "gal")], onchange=set_leguage,font_size=100) 
+#options.add.button('Nombre', rest, button_id='namee', font_size=100)
 options.add.text_input("IP:port-> ", default="localhost:43397", onreturn=pepper_config)
 
 
-options.add.range_slider('Selector', 50, (0, 100), 1,
+options.add.range_slider('Volumen del Pepper', 50, (0, 100), 1,
                       rangeslider_id='range_slider',
-                      value_format=lambda x: str(int(x)), width = 200,font_size=100)
+                      value_format=lambda x: str(int(x)), width = 200,font_size=100,onchange=volumen_pepper)
 
 
 
@@ -218,10 +222,10 @@ while True:
                 # subprocess.run(["python", "prueba_004.py"])
                 if seconds==5:
                     try:
-                        mmain(token(),lang,VERSION,IP_port)
+                        mmain(token(),lang,VERSION,IP_port,vol)
                     except:
-                        IP_port="localhost:33029"
-                        mmain(token(),lang,VERSION,IP_port)
+                        IP_port="localhost:43397"#localhost:43397localhost:43397
+                        mmain(token(),lang,VERSION,IP_port,vol)
                     exit()             
         if event.type == pygame.QUIT:
             pygame.display.quit()

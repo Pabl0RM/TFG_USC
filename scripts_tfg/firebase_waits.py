@@ -77,6 +77,7 @@ if  is_connected():
     doc_name = 'data_' + str(sys.argv[1])
     db.collection('tfg').document(doc_name).set(data)
     print("Todo bien")
+    # sys.exit()
 # Guardar los datos localmente si no hay conexión a internet
 if not is_connected():
     save_local_data(filename, data)
