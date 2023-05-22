@@ -1,8 +1,36 @@
 import pygame,time,os,random,json,statistics,datetime,platform,subprocess,sys
 from pygame.locals import *
+def pict(screen,contiene_c,contiene_incorrecta,contiene_correcta,i):
+        print('text')
+        X,Y = pygame.display.set_mode().get_size()
+        last_words_c = [image_name.split("_")[-1].split(".")[0] for image_name in contiene_c]
+        last_words_incorrecta = [image_name.split("_")[-1].split(".")[0] for image_name in contiene_incorrecta]
+        last_words_correcta = [image_name.split("_")[-1].split(".")[0] for image_name in contiene_correcta]           
+        font = pygame.font.SysFont(None, 32)
+        image1 = pygame.Surface((int(X*0.5), int(Y*0.5)))
+        correct_image = pygame.Surface((int(X*0.25), int(Y*0.25)))
+        incorrect_image = pygame.Surface((int(X*0.25), int(Y*0.25)))   
 
+        # Definir posición de las imágenes
+        image1_rect = image1.get_rect(center=(int(X*0.5),int( Y/3.5545454)))
+        aux_r=random.random()
+        if aux_r<0.7:correct_image_rect = correct_image.get_rect(center=(int(X/5.33333),int( Y/1.4)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/1.23),int( Y/1.4)))
+        else:correct_image_rect = correct_image.get_rect(center=(int(X/1.23),int( Y/1.4)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/5.33333),int( Y/1.4)))
+            
+        text_surface_c = font.render(last_words_c[i], True, (255, 255, 255))
+        text_rect_c = text_surface_c.get_rect(center=(image1_rect.centerx, image1_rect.bottom + 50))
+        screen.blit(text_surface_c, text_rect_c)
+
+        text_surface_incorrecta = font.render(last_words_incorrecta[i], True, (255, 255, 255))
+        text_rect_incorrecta = text_surface_incorrecta.get_rect(center=(correct_image_rect.centerx, correct_image_rect.bottom + 50))
+        screen.blit(text_surface_incorrecta, text_rect_incorrecta)
+
+        text_surface_correcta = font.render(last_words_correcta[i], True, (255, 255, 255))
+        text_rect_correcta = text_surface_correcta.get_rect(center=(incorrect_image_rect.centerx, incorrect_image_rect.bottom + 50))
+        screen.blit(text_surface_correcta, text_rect_correcta)    
+        pygame.display.update()
 global namee
-def mmain(Name,lang,VERSION,IP_port,vol):
+def mmain(Name,lang,VERSION,IP_port,vol,mode):
     # Inicializa Pygame
     pygame.init()
     clock = pygame.time.Clock()
@@ -33,7 +61,8 @@ def mmain(Name,lang,VERSION,IP_port,vol):
     bg_image = pygame.transform.scale(bg_image, window.get_size())
 
     # Cargar imágenes
-    img_folder = "imgs/"
+
+    img_folder = "imgs_prueba_pict/"
 
     # Obtener una lista de los nombres de archivo de todas las imágenes en la carpeta
     img_paths = sorted([img_folder+f for f in os.listdir(img_folder) if os.path.isfile(os.path.join(img_folder, f)) and f.endswith('.jpg')]    )
@@ -41,7 +70,7 @@ def mmain(Name,lang,VERSION,IP_port,vol):
     contiene_c = []
     contiene_incorrecta = []
     contiene_correcta = []
-    print(img_paths)
+    # print(img_paths)
     for elemento in img_paths:
         if '_central' in elemento:
             contiene_c.append(elemento)
@@ -56,15 +85,24 @@ def mmain(Name,lang,VERSION,IP_port,vol):
     # print(contiene_incorrecta[A])
     # print(contiene_correcta[A])
     # exit()
-    image1 = pygame.image.load(contiene_c[counter])
-    correct_image = pygame.image.load(contiene_incorrecta[counter])
-    incorrect_image = pygame.image.load(contiene_correcta[counter])
+    last_words_c = [image_name.split("_")[-1].split(".")[0] for image_name in contiene_c]
+    last_words_incorrecta = [image_name.split("_")[-1].split(".")[0] for image_name in contiene_incorrecta]
+    last_words_correcta = [image_name.split("_")[-1].split(".")[0] for image_name in contiene_correcta]    
 
-    # Definir tamaño de las imágenes
-    image1 = pygame.transform.smoothscale(image1, (int(X*0.5), int(Y*.5)))
-    correct_image = pygame.transform.smoothscale(correct_image, (int(X*0.25), int(Y*0.25)))
-    incorrect_image = pygame.transform.smoothscale(incorrect_image, (int(X*0.25), int(Y*0.25)))
+    if mode=="img" :
+        image1 = pygame.image.load(contiene_c[counter])
+        correct_image = pygame.image.load(contiene_incorrecta[counter])
+        incorrect_image = pygame.image.load(contiene_correcta[counter])
 
+        # Definir tamaño de las imágenes
+        image1 = pygame.transform.smoothscale(image1, (int(X*0.5), int(Y*.5)))
+        correct_image = pygame.transform.smoothscale(correct_image, (int(X*0.25), int(Y*0.25)))
+        incorrect_image = pygame.transform.smoothscale(incorrect_image, (int(X*0.25), int(Y*0.25)))
+    else:
+        image1 = pygame.Surface((int(X*0.5), int(Y*0.5)))
+        correct_image = pygame.Surface((int(X*0.25), int(Y*0.25)))
+        incorrect_image = pygame.Surface((int(X*0.25), int(Y*0.25)))   
+    #pict(window,contiene_c,contiene_correcta,contiene_incorrecta,counter)
     # Definir posición de las imágenes
     image1_rect = image1.get_rect(center=(int(X*0.5),int( Y/3.5545454)))
     aux_r=random.random()
@@ -89,16 +127,7 @@ def mmain(Name,lang,VERSION,IP_port,vol):
     
     while running:
         counting_time = pygame.time.get_ticks() - start_time-acumulativo
-        # print(counting_time)
-        
-        # window.blit(bg_image, (0, 0))
-        
-        # counting_minutes = str(counting_time//60000).zfill(2)
-        # counting_seconds = str( (counting_time%60000)//1000 ).zfill(2)
-        # counting_millisecond = str(counting_time%1000).zfill(3)
-
-        # counting_string = "%s:%s:%s" % (counting_minutes, counting_seconds, counting_millisecond)            
-        # print(counting_string)        
+    
         
         
         for event in pygame.event.get():
@@ -128,6 +157,23 @@ def mmain(Name,lang,VERSION,IP_port,vol):
                     window.blit(image1, image1_rect)
                     window.blit(correct_image, correct_image_rect)
                     window.blit(incorrect_image, incorrect_image_rect)              
+                    #pict(window,contiene_c,contiene_correcta,contiene_incorrecta,counter)
+                    if mode=="text":
+                        
+                        text_surface_c = font.render(last_words_c[counter], True, (255, 255, 255))
+                        text_rect_c = text_surface_c.get_rect(center=(image1_rect.centerx, image1_rect.centery))
+                        window.blit(text_surface_c, text_rect_c)
+
+                        text_surface_incorrecta = font.render(last_words_incorrecta[counter], True, (255, 255, 255))
+                        text_rect_incorrecta = text_surface_incorrecta.get_rect(center=(correct_image_rect.centerx, correct_image_rect.centery))
+                        window.blit(text_surface_incorrecta, text_rect_incorrecta)
+
+                        text_surface_correcta = font.render(last_words_correcta[counter], True, (255, 255, 255))
+                        text_rect_correcta = text_surface_correcta.get_rect(center=(incorrect_image_rect.centerx, incorrect_image_rect.centery))
+                        window.blit(text_surface_correcta, text_rect_correcta) 
+
+
+
                     
                     if (correct_image_clicked ) and counter <=4:
                         print("correcta")
@@ -189,16 +235,20 @@ def mmain(Name,lang,VERSION,IP_port,vol):
                         # image1 = pygame.image.load(img_paths[counter * 3 - 2])
                         # correct_image = pygame.image.load(img_paths[counter * 3 - 1])
                         # incorrect_image = pygame.image.load(img_paths[counter*3])
+                        if mode=="img":
+                            image1 = pygame.image.load(contiene_c[counter])
+                            correct_image = pygame.image.load(contiene_incorrecta[counter])
+                            incorrect_image = pygame.image.load(contiene_correcta[counter])
 
-                        image1 = pygame.image.load(contiene_c[counter])
-                        correct_image = pygame.image.load(contiene_incorrecta[counter])
-                        incorrect_image = pygame.image.load(contiene_correcta[counter])
 
-
-                        image1 = pygame.transform.smoothscale(image1, (int(X*0.5),int( Y*.5)))
-                        correct_image = pygame.transform.smoothscale(correct_image, (int(X*0.25),int( Y*0.25)))
-                        incorrect_image = pygame.transform.smoothscale(incorrect_image, (int(X*0.25),int( Y*0.25)))
-
+                            image1 = pygame.transform.smoothscale(image1, (int(X*0.5),int( Y*.5)))
+                            correct_image = pygame.transform.smoothscale(correct_image, (int(X*0.25),int( Y*0.25)))
+                            incorrect_image = pygame.transform.smoothscale(incorrect_image, (int(X*0.25),int( Y*0.25)))
+                        else:
+                            image1 = pygame.Surface((int(X*0.5), int(Y*0.5)))
+                            correct_image = pygame.Surface((int(X*0.25), int(Y*0.25)))
+                            incorrect_image = pygame.Surface((int(X*0.25), int(Y*0.25)))  
+                        #pict(window,contiene_c,contiene_correcta,contiene_incorrecta,counter)
                         # Definir posición de las imágenes
                         image1_rect  = image1.get_rect(center=(int(X*0.5),int( Y/3.5545454)))
                         # correct_image_rect = correct_image.get_rect(center=(int(X/5.33333),int( Y/1.7148)))
@@ -281,7 +331,7 @@ def mmain(Name,lang,VERSION,IP_port,vol):
             time_without_click=0
             last_click_time =  pygame.time.get_ticks() 
         else:
-            print("")
+            pass
         # Dibujar tiempo
         
 
@@ -299,11 +349,24 @@ def mmain(Name,lang,VERSION,IP_port,vol):
         counting_rect = counting_text.get_rect(center = feedback)
 
         # Dibujar imágenes en la ventana
+        # pict(window,contiene_c,contiene_correcta,contiene_incorrecta,counter)
         window.blit(image1, image1_rect)
         window.blit(correct_image, correct_image_rect)
         window.blit(incorrect_image, incorrect_image_rect)
         window.blit(counting_text, counting_rect)
-        
+        if mode=="text":
+            
+            text_surface_c = font.render(last_words_c[counter], True, (255, 255, 255))
+            text_rect_c = text_surface_c.get_rect(center=(image1_rect.centerx, image1_rect.centery))
+            window.blit(text_surface_c, text_rect_c)
+
+            text_surface_incorrecta = font.render(last_words_incorrecta[counter], True, (255, 255, 255))
+            text_rect_incorrecta = text_surface_incorrecta.get_rect(center=(correct_image_rect.centerx, correct_image_rect.centery))
+            window.blit(text_surface_incorrecta, text_rect_incorrecta)
+
+            text_surface_correcta = font.render(last_words_correcta[counter], True, (255, 255, 255))
+            text_rect_correcta = text_surface_correcta.get_rect(center=(incorrect_image_rect.centerx, incorrect_image_rect.centery))
+            window.blit(text_surface_correcta, text_rect_correcta)          
   
 
         # Actualizar pantalla
@@ -343,10 +406,10 @@ def mmain(Name,lang,VERSION,IP_port,vol):
         counting_millisecond = str(counting_time%1000).zfill(3)
 
         counting_string = "%s:%s:%s" % (counting_minutes, counting_seconds, counting_millisecond)            
-        print(counting_string) 
-        print(acumulativo) 
+        if counting_time%1000==0:print(counting_string);print(acumulativo) 
+        
     print("----------------------Fin de juego----------------------\n\n\n")
-    print("------------------------------------------------")
+   
 
 
     try:

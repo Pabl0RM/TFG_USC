@@ -12,7 +12,7 @@ localhost:43397
 if len(sys.argv) < 2:
     print('Error: Debe ingresar IP:Port como argumento.')
     sys.exit()
-IP_l= "localhost","43397"
+IP_l= sys.argv[1].split(":")
 tts=ALProxy("ALTextToSpeech",IP_l[0], int(IP_l[1]))
 postura=ALProxy("ALRobotPosture",IP_l[0],int(IP_l[1]))
 

@@ -77,7 +77,10 @@ def set_leguage(value, difficulty):
     global lang
     lang=difficulty
     print(difficulty)
-    
+def set_mode(_,modo):
+    global modoo
+    modoo=modo
+    print(modo)
 def name():
     #extraer nombre, speech recog
 
@@ -188,8 +191,8 @@ level.add.button('Terminal-Sintetizador',explicacion_sintetizador, font_size=100
 
 options = pygame_menu.Menu('Opciones', X, Y, theme=my_theme)
 options.add.selector('Idioma ', [('Español', "esp"), ('Inglés', "eng"), ('Galego', "gal")], onchange=set_leguage,font_size=100) 
-#options.add.button('Nombre', rest, button_id='namee', font_size=100)
-options.add.text_input("IP:port-> ", default="localhost:43397", onreturn=pepper_config)
+options.add.selector('Modo ', [('Imágenes', "img"), ('Textual', "text")], onchange=set_mode,font_size=100) 
+options.add.text_input("IP:port-> ", default="localhost:35677", onreturn=pepper_config)
 
 
 options.add.range_slider('Volumen del Pepper', 50, (0, 100), 1,
@@ -222,10 +225,11 @@ while True:
                 # subprocess.run(["python", "prueba_004.py"])
                 if seconds==5:
                     try:
-                        mmain(token(),lang,VERSION,IP_port,vol)
+                        mmain(token(),lang,VERSION,IP_port,vol,modoo)
                     except:
-                        IP_port="localhost:43397"#localhost:43397localhost:43397
-                        mmain(token(),lang,VERSION,IP_port,vol)
+                        print('ERORRRR')
+                        IP_port="localhost:356773"#localhost:43397localhost:43397
+                        mmain(token(),lang,VERSION,IP_port,vol,modoo)
                     exit()             
         if event.type == pygame.QUIT:
             pygame.display.quit()
