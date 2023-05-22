@@ -190,14 +190,14 @@ level.add.button('Terminal-Sintetizador',explicacion_sintetizador, font_size=100
 
 
 options = pygame_menu.Menu('Opciones', X, Y, theme=my_theme)
-options.add.selector('Idioma ', [('Español', "esp"), ('Inglés', "eng"), ('Galego', "gal")], onchange=set_leguage,font_size=100) 
-options.add.selector('Modo ', [('Imágenes', "img"), ('Textual', "text")], onchange=set_mode,font_size=100) 
-options.add.text_input("IP:port-> ", default="localhost:35677", onreturn=pepper_config)
+options.add.selector('Idioma ', [('Español', "esp"), ('Inglés', "eng"), ('Galego', "gal")], onchange=set_leguage,font_size=50) 
+options.add.selector('Modo ', [('Imágenes', "img"), ('Textual', "text")], onchange=set_mode,font_size=50) 
+options.add.text_input("IP:port-> ", default="localhost:35677", onreturn=pepper_config,font_size=50) 
 
 
 options.add.range_slider('Volumen del Pepper', 50, (0, 100), 1,
                       rangeslider_id='range_slider',
-                      value_format=lambda x: str(int(x)), width = 200,font_size=100,onchange=volumen_pepper)
+                      value_format=lambda x: str(int(x)), width = 200,font_size=50,onchange=volumen_pepper)
 
 
 
