@@ -1,34 +1,6 @@
 import pygame,time,os,random,json,statistics,datetime,platform,subprocess,sys
 from pygame.locals import *
-def pict(screen,contiene_c,contiene_incorrecta,contiene_correcta,i):
-        print('text')
-        X,Y = pygame.display.set_mode().get_size()
-        last_words_c = [image_name.split("_")[-1].split(".")[0] for image_name in contiene_c]
-        last_words_incorrecta = [image_name.split("_")[-1].split(".")[0] for image_name in contiene_incorrecta]
-        last_words_correcta = [image_name.split("_")[-1].split(".")[0] for image_name in contiene_correcta]           
-        font = pygame.font.SysFont(None, 32)
-        image1 = pygame.Surface((int(X*0.5), int(Y*0.5)))
-        correct_image = pygame.Surface((int(X*0.25), int(Y*0.25)))
-        incorrect_image = pygame.Surface((int(X*0.25), int(Y*0.25)))   
 
-        # Definir posición de las imágenes
-        image1_rect = image1.get_rect(center=(int(X*0.5),int( Y/3.5545454)))
-        aux_r=random.random()
-        if aux_r<0.7:correct_image_rect = correct_image.get_rect(center=(int(X/5.33333),int( Y/1.4)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/1.23),int( Y/1.4)))
-        else:correct_image_rect = correct_image.get_rect(center=(int(X/1.23),int( Y/1.4)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/5.33333),int( Y/1.4)))
-            
-        text_surface_c = font.render(last_words_c[i], True, (255, 255, 255))
-        text_rect_c = text_surface_c.get_rect(center=(image1_rect.centerx, image1_rect.bottom + 50))
-        screen.blit(text_surface_c, text_rect_c)
-
-        text_surface_incorrecta = font.render(last_words_incorrecta[i], True, (255, 255, 255))
-        text_rect_incorrecta = text_surface_incorrecta.get_rect(center=(correct_image_rect.centerx, correct_image_rect.bottom + 50))
-        screen.blit(text_surface_incorrecta, text_rect_incorrecta)
-
-        text_surface_correcta = font.render(last_words_correcta[i], True, (255, 255, 255))
-        text_rect_correcta = text_surface_correcta.get_rect(center=(incorrect_image_rect.centerx, incorrect_image_rect.bottom + 50))
-        screen.blit(text_surface_correcta, text_rect_correcta)    
-        pygame.display.update()
 global namee
 picto=0
 def mmain(Name,lang,VERSION,IP_port,vol,mode):
@@ -36,6 +8,7 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
     pygame.init()
     clock = pygame.time.Clock()
     font = pygame.font.SysFont(None, 32)
+    font_textual = pygame.font.SysFont('Helvetica', 32)
     start_time = pygame.time.get_ticks() 
     question_times=[]
     aciertos=0
@@ -162,15 +135,15 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
                     #pict(window,contiene_c,contiene_correcta,contiene_incorrecta,counter)
                     if mode=="text":
                         
-                        text_surface_c = font.render(last_words_c[counter], True, (255, 255, 255))
+                        text_surface_c = font_textual.render(last_words_c[counter], True, (255, 255, 255))
                         text_rect_c = text_surface_c.get_rect(center=(image1_rect.centerx, image1_rect.centery))
                         window.blit(text_surface_c, text_rect_c)
 
-                        text_surface_incorrecta = font.render(last_words_incorrecta[counter], True, (255, 255, 255))
+                        text_surface_incorrecta = font_textual.render(last_words_incorrecta[counter], True, (255, 255, 255))
                         text_rect_incorrecta = text_surface_incorrecta.get_rect(center=(correct_image_rect.centerx, correct_image_rect.centery))
                         window.blit(text_surface_incorrecta, text_rect_incorrecta)
 
-                        text_surface_correcta = font.render(last_words_correcta[counter], True, (255, 255, 255))
+                        text_surface_correcta = font_textual.render(last_words_correcta[counter], True, (255, 255, 255))
                         text_rect_correcta = text_surface_correcta.get_rect(center=(incorrect_image_rect.centerx, incorrect_image_rect.centery))
                         window.blit(text_surface_correcta, text_rect_correcta) 
 
@@ -358,15 +331,15 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
         window.blit(counting_text, counting_rect)
         if mode=="text":
             try:
-                text_surface_c = font.render(last_words_c[counter], True, (255, 255, 255))
+                text_surface_c = font_textual.render(last_words_c[counter], True, (255, 255, 255))
                 text_rect_c = text_surface_c.get_rect(center=(image1_rect.centerx, image1_rect.centery))
                 window.blit(text_surface_c, text_rect_c)
 
-                text_surface_incorrecta = font.render(last_words_incorrecta[counter], True, (255, 255, 255))
+                text_surface_incorrecta = font_textual.render(last_words_incorrecta[counter], True, (255, 255, 255))
                 text_rect_incorrecta = text_surface_incorrecta.get_rect(center=(correct_image_rect.centerx, correct_image_rect.centery))
                 window.blit(text_surface_incorrecta, text_rect_incorrecta)
 
-                text_surface_correcta = font.render(last_words_correcta[counter], True, (255, 255, 255))
+                text_surface_correcta = font_textual.render(last_words_correcta[counter], True, (255, 255, 255))
                 text_rect_correcta = text_surface_correcta.get_rect(center=(incorrect_image_rect.centerx, incorrect_image_rect.centery))
                 window.blit(text_surface_correcta, text_rect_correcta)        
             except:
@@ -529,3 +502,4 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
     import encuestas
     encuestas.main(vol)
     
+mmain('proba','proba','proba','localhost:35677','0.666','text')

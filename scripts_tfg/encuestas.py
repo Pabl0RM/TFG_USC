@@ -1,6 +1,7 @@
 import pygame
 import pygame_menu
 import json,subprocess
+from pygame.locals import *
 def escribir_archivo_texto( contenido):
     with open("tmp.txt", 'w') as archivo:
         archivo.write(str(contenido))
@@ -22,8 +23,8 @@ def borrar_archivo_texto():
 pygame.init()
 
 # Definir el tamaño de la pantalla
-X, Y = 800, 600
-screen = pygame.display.set_mode().get_size()
+X, Y =  pygame.display.set_mode().get_size()
+screen = pygame.display.set_mode((X, Y))
 
 # Crear un menú con Pygame-menu
 menu = pygame_menu.Menu("Encuesta de usabilidad del robot Pepper", X, Y, theme=pygame_menu.themes.THEME_DARK)
@@ -150,5 +151,5 @@ def main(vol):
         pygame.display.update()
 
 # Llamar a la función principal
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main('0.9')
