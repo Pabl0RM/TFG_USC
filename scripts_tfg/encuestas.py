@@ -23,7 +23,7 @@ pygame.init()
 
 # Definir el tamaño de la pantalla
 X, Y = 800, 600
-screen = pygame.display.set_mode((X, Y))
+screen = pygame.display.set_mode().get_size()
 
 # Crear un menú con Pygame-menu
 menu = pygame_menu.Menu("Encuesta de usabilidad del robot Pepper", X, Y, theme=pygame_menu.themes.THEME_DARK)

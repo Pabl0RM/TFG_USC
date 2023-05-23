@@ -224,12 +224,13 @@ while True:
                 # subprocess.Popen("python prueba_004.py ", shell=True)  
                 # subprocess.run(["python", "prueba_004.py"])
                 if seconds==5:
-                    try:
-                        mmain(token(),lang,VERSION,IP_port,vol,modoo)
-                    except:
-                        print('ERORRRR')
-                        IP_port="localhost:356773"#localhost:43397localhost:43397
-                        mmain(token(),lang,VERSION,IP_port,vol,modoo)
+                    mmain(token(),lang,VERSION,IP_port,vol,modoo)
+                    # try:
+                    #     mmain(token(),lang,VERSION,IP_port,vol,modoo)
+                    # except:
+                    #     print('ERORRRR')
+                    #     IP_port="localhost:356773"#localhost:43397localhost:43397
+                    #     mmain(token(),lang,VERSION,IP_port,vol,modoo)
                     exit()             
         if event.type == pygame.QUIT:
             pygame.display.quit()

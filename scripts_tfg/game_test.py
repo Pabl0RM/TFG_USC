@@ -30,6 +30,7 @@ def pict(screen,contiene_c,contiene_incorrecta,contiene_correcta,i):
         screen.blit(text_surface_correcta, text_rect_correcta)    
         pygame.display.update()
 global namee
+picto=0
 def mmain(Name,lang,VERSION,IP_port,vol,mode):
     # Inicializa Pygame
     pygame.init()
@@ -85,6 +86,7 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
     # print(contiene_incorrecta[A])
     # print(contiene_correcta[A])
     # exit()
+    print(contiene_c)
     last_words_c = [image_name.split("_")[-1].split(".")[0] for image_name in contiene_c]
     last_words_incorrecta = [image_name.split("_")[-1].split(".")[0] for image_name in contiene_incorrecta]
     last_words_correcta = [image_name.split("_")[-1].split(".")[0] for image_name in contiene_correcta]    
@@ -124,7 +126,7 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
     counter+=1
     feedback=(window.get_width()//2,(window.get_height()//2)+100)
     
-    
+    picto=0
     while running:
         counting_time = pygame.time.get_ticks() - start_time-acumulativo
     
@@ -355,24 +357,29 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
         window.blit(incorrect_image, incorrect_image_rect)
         window.blit(counting_text, counting_rect)
         if mode=="text":
-            
-            text_surface_c = font.render(last_words_c[counter], True, (255, 255, 255))
-            text_rect_c = text_surface_c.get_rect(center=(image1_rect.centerx, image1_rect.centery))
-            window.blit(text_surface_c, text_rect_c)
+            try:
+                text_surface_c = font.render(last_words_c[counter], True, (255, 255, 255))
+                text_rect_c = text_surface_c.get_rect(center=(image1_rect.centerx, image1_rect.centery))
+                window.blit(text_surface_c, text_rect_c)
 
-            text_surface_incorrecta = font.render(last_words_incorrecta[counter], True, (255, 255, 255))
-            text_rect_incorrecta = text_surface_incorrecta.get_rect(center=(correct_image_rect.centerx, correct_image_rect.centery))
-            window.blit(text_surface_incorrecta, text_rect_incorrecta)
+                text_surface_incorrecta = font.render(last_words_incorrecta[counter], True, (255, 255, 255))
+                text_rect_incorrecta = text_surface_incorrecta.get_rect(center=(correct_image_rect.centerx, correct_image_rect.centery))
+                window.blit(text_surface_incorrecta, text_rect_incorrecta)
 
-            text_surface_correcta = font.render(last_words_correcta[counter], True, (255, 255, 255))
-            text_rect_correcta = text_surface_correcta.get_rect(center=(incorrect_image_rect.centerx, incorrect_image_rect.centery))
-            window.blit(text_surface_correcta, text_rect_correcta)          
+                text_surface_correcta = font.render(last_words_correcta[counter], True, (255, 255, 255))
+                text_rect_correcta = text_surface_correcta.get_rect(center=(incorrect_image_rect.centerx, incorrect_image_rect.centery))
+                window.blit(text_surface_correcta, text_rect_correcta)        
+            except:
+                print(counter)
+                print(len(contiene_c)+1)
+                picto=1                  
+
   
 
         # Actualizar pantalla
         pygame.display.update()  
         clock.tick(100)   
-        if counter == len(contiene_c)+1:
+        if counter >len(contiene_c) or picto:
             if (correct_image_clicked ) and counter >=5:
                 question_times.append(counting_time)
                 aciertos+=1                    
