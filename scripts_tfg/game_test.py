@@ -3,12 +3,14 @@ from pygame.locals import *
 
 global namee
 picto=0
+
+
 def mmain(Name,lang,VERSION,IP_port,vol,mode):
     # Inicializa Pygame
     pygame.init()
     clock = pygame.time.Clock()
     font = pygame.font.SysFont(None, 32)
-    font_textual = pygame.font.SysFont('Helvetica', 32)
+    font_textual = pygame.font.SysFont('Helvetica', 120)
     start_time = pygame.time.get_ticks() 
     question_times=[]
     aciertos=0
@@ -429,49 +431,118 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
     variable_7 = "Puntuacion: " +formula
 
 
-            # Definir las dimensiones del rectángulo
-    rect_width = 350
-    rect_height = 400
-    aux=150
+#             # Definir las dimensiones del rectángulo
+#     rect_width = 350
+#     rect_height = 400
+#     aux=150
 
-    # Crear el rectángulo de color negro
-    rect = pygame.Surface((rect_width, rect_height))
-    rect.fill((17, 177, 177))
+#     # Crear el rectángulo de color negro
+#     rect = pygame.Surface((rect_width, rect_height))
+#     rect.fill((17, 177, 177))
 
-    # Renderizar el rectángulo en la ventana
-    window.blit(rect, ((window.get_width()//2)-50, aux ))
+#     # Renderizar el rectángulo en la ventana
+#     window.blit(rect, ((window.get_width()//2)-50, aux ))
 
 
-    # Definir el color del texto
-    text_color = (0, 0, 0)
+#     # Definir el color del texto
+#     text_color = (0, 0, 0)
 
-    ancho_pantalla = window.get_width()
-#   Renderizar las variables en la ventana
-    variable_1_text = font.render(str(variable_1), True, text_color)
-    window.blit(variable_1_text, (ancho_pantalla//2,aux+ 50))
+#     ancho_pantalla = window.get_width()
+# #   Renderizar las variables en la ventana
+#     variable_1_text = font.render(str(variable_1), True, text_color)
+#     window.blit(variable_1_text, (ancho_pantalla//2,aux+ 50))
 
-    variable_2_text = font.render(str(variable_2), True, text_color)
-    window.blit(variable_2_text, (ancho_pantalla//2,aux+ 100))
+#     variable_2_text = font.render(str(variable_2), True, text_color)
+#     window.blit(variable_2_text, (ancho_pantalla//2,aux+ 100))
 
-    variable_3_text = font.render(str(variable_3), True, text_color)
-    window.blit(variable_3_text, (ancho_pantalla//2,aux+ 150))
+#     variable_3_text = font.render(str(variable_3), True, text_color)
+#     window.blit(variable_3_text, (ancho_pantalla//2,aux+ 150))
 
-    variable_4_text = font.render(str(variable_4), True, text_color)
-    window.blit(variable_4_text, (ancho_pantalla//2,aux+ 200))
+#     variable_4_text = font.render(str(variable_4), True, text_color)
+#     window.blit(variable_4_text, (ancho_pantalla//2,aux+ 200))
 
-    variable_5_text = font.render(str(variable_5), True, text_color)
-    window.blit(variable_5_text, (ancho_pantalla//2,aux+ 250))
-    variable_6_text = font.render(str(variable_6), True, text_color)
-    window.blit(variable_6_text, (ancho_pantalla//2,aux+ 300))
+#     variable_5_text = font.render(str(variable_5), True, text_color)
+#     window.blit(variable_5_text, (ancho_pantalla//2,aux+ 250))
+#     variable_6_text = font.render(str(variable_6), True, text_color)
+#     window.blit(variable_6_text, (ancho_pantalla//2,aux+ 300))
 
-    variable_7_text = font.render(str(variable_7), True, text_color)
-    window.blit(variable_7_text, (ancho_pantalla//2,aux+ 350))    
-    pygame.time.wait(5000)    
+#     variable_7_text = font.render(str(variable_7), True, text_color)
+#     window.blit(variable_7_text, (ancho_pantalla//2,aux+ 350))    
+
+
+    import pygame_menu
+
+    menu = pygame_menu.Menu('Analisis',X,Y,  theme=pygame_menu.themes.THEME_DEFAULT)
+
+    variables = [variable_1,variable_2,variable_3,variable_4,variable_5,variable_6,variable_7]
+
+    for variable in variables:
+        menu.add.label(variable, align=pygame_menu.locals.ALIGN_CENTER)
+
+    def back():
+        a=False
+        menu.clear()
+        print("Tiempo total:",(counting_string))
+ 
+        #encuestas
+
+        dictionary = {
+            "name": ID_enmcr,
+            "time-stamp":str(datetime.datetime.now()),
+            "execution-time": counting_string,
+            "avg-test-time": meadia_counting_string,
+            "aciertos": aciertos,
+            "fallos": fallos,
+            
+            "omisiones": omision,
+            "multi-idioma":lang,
+            "Version":VERSION,
+            "SO":platform.system()
+        }
+        print(question_times)
+        # Serializing json
+        json_object = json.dumps(dictionary, indent=4)
+
+        # Writing to sample.jsonn
+        with open("ST_data.json", "w") as outfile:
+            outfile.write(json_object)
+        pygame.display.quit()
+        with open("tmpp.txt", "w") as outfile:
+            outfile.write(IP_port)    
+        import encuestas
+        encuestas.main(vol)
+        
+
+    menu.add.button('Encuesta', back)
+    a=True
+    while a:
+        events = pygame.event.get()
+        for event in events:
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+        menu.update(events)
+        
+        menu.draw(window)
+        pygame.display.flip()
+
+
+
+
+
+
+
+
+
+
+
+
+  
     # Actualizar pantalla
     pygame.display.update()    
 
     print("Tiempo total:",(counting_string))
-    pygame.time.wait(1500)  
+ 
     #encuestas
     
 
@@ -502,4 +573,4 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
     import encuestas
     encuestas.main(vol)
     
-mmain('proba','proba','proba','localhost:35677','0.666','text')
+# mmain('proba','proba','proba','localhost:35677','0.666','text')
