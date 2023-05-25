@@ -9,7 +9,7 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
     # Inicializa Pygame
     pygame.init()
     clock = pygame.time.Clock()
-    font = pygame.font.SysFont(None, 32)
+    font = pygame.font.SysFont('Helvetica', 40)
     font_textual = pygame.font.SysFont('Helvetica', 120)
     start_time = pygame.time.get_ticks() 
     question_times=[]
@@ -98,7 +98,7 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
     time_without_click = 0
     last_click_time=start_time
     counter+=1
-    feedback=(window.get_width()//2,(window.get_height()//2)+100)
+    feedback=(window.get_width()//2,(window.get_height()//2)+160)
     
     picto=0
     while running:
@@ -158,7 +158,7 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
                         pygame.draw.rect(window, (0, 255, 0), incorrect_image_rect, 10)
                         pygame.draw.rect(window, (0, 255, 0), image1_rect, 10)
                         counting_string2="Imagen correcta"
-                        counting_text2 = font.render(str(counting_string2), 1, (0,0,0))
+                        counting_text2 = font.render(str(counting_string2), 1, (0, 255, 0))
                         counting_rect2 = counting_text2.get_rect(center = feedback)
                         window.blit(counting_text2, counting_rect2)
                         pygame.display.update()
@@ -173,7 +173,7 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
                         pygame.draw.rect(window, (255, 0, 0), correct_image_rect, 10)
                         pygame.draw.rect(window, (255, 0, 0), image1_rect, 10)
                         counting_string2="No es la imagen correcta"
-                        counting_text2 = font.render(str(counting_string2), 1, (0,0,0))
+                        counting_text2 = font.render(str(counting_string2), 1, (255, 0, 0))
                         counting_rect2 = counting_text2.get_rect(center = feedback)
                         window.blit(counting_text2, counting_rect2)
                         pygame.display.update()
@@ -274,7 +274,7 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
             print("No se ha hecho clic en la ventana en los últimos 4 segundos.")
             
             counting_string_time="No se ha hecho clic en la ventana en los últimos 4 segundos."
-            counting_text_time = font.render(str(counting_string_time), 1, (0,0,0))
+            counting_text_time = font.render(str(counting_string_time), 1, (255,255,255))
             counting_rect_time = counting_text_time.get_rect(center = feedback)
             window.blit(counting_text_time, counting_rect_time)
             pygame.display.update()
@@ -321,7 +321,7 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
 
         counting_string = "%s:%s:%s" % (counting_minutes, counting_seconds, counting_millisecond)
 
-        counting_text = font.render(str(counting_string), 1, (0,0,0))
+        counting_text = font.render(str(counting_string), 1, (255,255,255))
         counting_rect = counting_text.get_rect(center = feedback)
 
         # Dibujar imágenes en la ventana
@@ -476,7 +476,7 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
     variables = [variable_1,variable_2,variable_3,variable_4,variable_5,variable_6,variable_7]
 
     for variable in variables:
-        menu.add.label(variable, align=pygame_menu.locals.ALIGN_CENTER)
+        menu.add.label(variable, align=pygame_menu.locals.ALIGN_CENTER,font_size=70)
 
     def back():
         a=False
@@ -512,7 +512,7 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
         encuestas.main(vol)
         
 
-    menu.add.button('Encuesta', back)
+    menu.add.button('Encuesta', back,font_size=70)
     a=True
     while a:
         events = pygame.event.get()
