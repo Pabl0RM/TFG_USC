@@ -1,13 +1,12 @@
 {
-    "name": "c304bc499cd5",
-    "time-stamp": "2023-05-23 16:11:05.736399",
-    "execution-time": "00:11:628",
-    "avg-test-time": "00:06:838",
-    "aciertos": 5,
-    "fallos": 6,
+    "name": "proba",
+    "time-stamp": "2023-05-25 19:12:47.560694",
+    "execution-time": "00:07:932",
+    "avg-test-time": "00:00:000",
+    "aciertos": 0,
+    "fallos": 0,
     "omisiones": 0,
-    "multi-idioma": "esp",
-    "Version": "1.0",
-    "SO": "Linux",
-    "respuestas": "3\n2\n4\n3\n2\n"
+    "multi-idioma": "proba",
+    "Version": "proba",
+    "SO": "Linux"
 }
