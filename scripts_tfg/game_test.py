@@ -24,7 +24,7 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
 
     X,Y = pygame.display.set_mode().get_size()
     window = pygame.display.set_mode((X, Y),RESIZABLE)
-
+    scale=0.91
 
 
     # Crear superficie de fondo degradado
@@ -71,20 +71,20 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
         correct_image = pygame.image.load(contiene_incorrecta[counter])
         incorrect_image = pygame.image.load(contiene_correcta[counter])
 
-        # Definir tamaño de las imágenes (int(A*0.75), int(B*0.75)))
-        image1 = pygame.transform.smoothscale(image1, (int(A*0.75), int(B*0.75)))
-        correct_image = pygame.transform.smoothscale(correct_image, (int(A*0.75), int(B*0.75)))
-        incorrect_image = pygame.transform.smoothscale(incorrect_image, (int(A*0.75), int(B*0.75)))
+        # Definir tamaño de las imágenes (int(A*scale), int(B*scale)))
+        image1 = pygame.transform.smoothscale(image1, (int(A*scale), int(B*scale)))
+        correct_image = pygame.transform.smoothscale(correct_image, (int(A*scale), int(B*scale)))
+        incorrect_image = pygame.transform.smoothscale(incorrect_image, (int(A*scale), int(B*scale)))
     else:
-        image1 = pygame.Surface((int(X*0.5), int(Y*0.5)))
-        correct_image = pygame.Surface((int(A*0.75), int(B*0.75)))
-        incorrect_image = pygame.Surface((int(A*0.75), int(B*0.75)))   
+        image1 = pygame.Surface((int(A*scale), int(B*scale)))
+        correct_image = pygame.Surface((int(A*scale), int(B*scale)))
+        incorrect_image = pygame.Surface((int(A*scale), int(B*scale)))   
     #pict(window,contiene_c,contiene_correcta,contiene_incorrecta,counter)
     # Definir posición de las imágenes
     image1_rect = image1.get_rect(center=(int(X*0.5),int( Y/3.5545454)))
     aux_r=random.random()
-    if aux_r<0.7:correct_image_rect = correct_image.get_rect(center=(int(X/5.33333),int( Y/1.4)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/1.23),int( Y/1.4)))
-    else:correct_image_rect = correct_image.get_rect(center=(int(X/1.23),int( Y/1.4)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/5.33333),int( Y/1.4)))
+    if aux_r<0.7:correct_image_rect = correct_image.get_rect(center=(int(X/5.33333),int( Y/1.55)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/1.23),int( Y/1.55)))
+    else:correct_image_rect = correct_image.get_rect(center=(int(X/1.23),int( Y/1.55)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/5.33333),int( Y/1.55)))
 
     # Banderas para verificar si se hizo clic en una imagen (int(X/1.23),int( Y/1.7148))
     correct_image_clicked = False
@@ -216,22 +216,21 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
                             correct_image = pygame.image.load(contiene_incorrecta[counter])
                             incorrect_image = pygame.image.load(contiene_correcta[counter])
 
-
-                            image1 = pygame.transform.smoothscale(image1, (int(X*0.5),int( Y*0.5)))
-                            correct_image = pygame.transform.smoothscale(correct_image, (int(X*0.25),int( Y*0.25)))
-                            incorrect_image = pygame.transform.smoothscale(incorrect_image, (int(X*0.25),int( Y*0.25)))
+                            image1 = pygame.transform.smoothscale(image1, (int(A*scale), int(B*scale)))
+                            correct_image = pygame.transform.smoothscale(correct_image, (int(A*scale), int(B*scale)))
+                            incorrect_image = pygame.transform.smoothscale(incorrect_image, (int(A*scale), int(B*scale)))
                         else:
-                            image1 = pygame.Surface((int(X*0.5), int(Y*0.5)))
-                            correct_image = pygame.Surface((int(A*0.75), int(B*0.75)))
-                            incorrect_image = pygame.Surface((int(A*0.75), int(B*0.75)))  
+                            image1 = pygame.Surface((int(A*scale), int(B*scale)))
+                            correct_image = pygame.Surface((int(A*scale), int(B*scale)))
+                            incorrect_image = pygame.Surface((int(A*scale), int(B*scale)))  
                         #pict(window,contiene_c,contiene_correcta,contiene_incorrecta,counter)
                         # Definir posición de las imágenes
                         image1_rect  = image1.get_rect(center=(int(X*0.5),int( Y/3.5545454)))
                         # correct_image_rect = correct_image.get_rect(center=(int(X/5.33333),int( Y/1.7148)))
                         # incorrect_image_rect = incorrect_image.get_rect(center=(int(X/1.23),int( Y/1.7148)))
                         aux_r=random.random()
-                        if aux_r<0.7:correct_image_rect = correct_image.get_rect(center=(int(X/5.33333),int( Y/1.4)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/1.23),int( Y/1.4)))
-                        else:correct_image_rect = correct_image.get_rect(center=(int(X/1.23),int( Y/1.4)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/5.33333),int( Y/1.4)))
+                        if aux_r<0.7:correct_image_rect = correct_image.get_rect(center=(int(X/5.33333),int( Y/1.55)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/1.23),int( Y/1.55)))
+                        else:correct_image_rect = correct_image.get_rect(center=(int(X/1.23),int( Y/1.55)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/5.33333),int( Y/1.55)))
 
                         # # Reiniciar banderas
                         correct_image_clicked = False
@@ -286,9 +285,10 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
             correct_image = pygame.image.load(contiene_incorrecta[counter])
             incorrect_image = pygame.image.load(contiene_correcta[counter])
             
-            image1 = pygame.transform.smoothscale(image1, (int(X*0.5),int( Y*0.5)))
-            correct_image = pygame.transform.smoothscale(correct_image, (int(X*0.25),int( Y*0.25)))
-            incorrect_image = pygame.transform.smoothscale(incorrect_image, (int(X*0.25),int( Y*0.25)))
+
+            image1 = pygame.transform.smoothscale(image1, (int(A*scale), int(B*scale)))
+            correct_image = pygame.transform.smoothscale(correct_image, (int(A*scale), int(B*scale)))
+            incorrect_image = pygame.transform.smoothscale(incorrect_image, (int(A*scale), int(B*scale)))
 
             # Definir posición de las imágenes
             image1_rect =  image1.get_rect(center=(int(X*0.5),int( Y/3.5545454)))
@@ -296,8 +296,8 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
             # correct_image_rect = correct_image.get_rect(center=(int(X/5.33333),int( Y/1.7148)))
             # incorrect_image_rect = incorrect_image.get_rect(center=(int(X/1.23),int( Y/1.7148)))
             aux_r=random.random()
-            if aux_r<0.7:correct_image_rect = correct_image.get_rect(center=(int(X/5.33333),int( Y/1.4)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/1.23),int( Y/1.4)))
-            else:correct_image_rect = correct_image.get_rect(center=(int(X/1.23),int( Y/1.4)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/5.33333),int( Y/1.4)))
+            if aux_r<0.7:correct_image_rect = correct_image.get_rect(center=(int(X/5.33333),int( Y/1.55)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/1.23),int( Y/1.55)))
+            else:correct_image_rect = correct_image.get_rect(center=(int(X/1.23),int( Y/1.55)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/5.33333),int( Y/1.55)))
                     
             # Reiniciar banderas
             correct_image_clicked = False
@@ -572,4 +572,4 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
     import encuestas
     encuestas.main(vol)
     
-mmain('proba','proba','proba','localhost:35677','0.666','img')
+mmain('proba','proba','proba','localhost:35677','0.666','text')

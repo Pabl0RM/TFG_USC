@@ -27,7 +27,7 @@ X, Y =  pygame.display.set_mode().get_size()
 screen = pygame.display.set_mode((X, Y))
 
 # Crear un menú con Pygame-menu
-menu = pygame_menu.Menu("Encuesta de usabilidad del robot Pepper", X, Y, theme=pygame_menu.themes.THEME_DARK)
+menu = pygame_menu.Menu("Encuesta de usabilidad del robot Pepper", X, Y, theme=pygame_menu.themes.THEME_DARK )
 
 # Lista de preguntas
 preguntas = [
@@ -55,13 +55,13 @@ def write_json(new_data, filename='ST_data.json'):
 # Función para mostrar la pregunta actual
 def show_question():
     menu.clear()
-    menu.add.label(preguntas[current_question])
-    menu.add.selector("Puntua", [("1", 1), ("2", 2), ("3", 3), ("4", 4), ("5", 5)], onchange=on_answer_change)
-    menu.add.button("Anterior", previous_question)
-    menu.add.button("Siguiente", next_question)
+    menu.add.label(preguntas[current_question], font_size=100)
+    menu.add.selector("Puntua", [("1", 1), ("2", 2), ("3", 3), ("4", 4), ("5", 5)], onchange=on_answer_change, font_size=100)
+    menu.add.button("Anterior", previous_question, font_size=100)
+    menu.add.button("Siguiente", next_question, font_size=100)
     if current_question == len(preguntas) - 1:
-        menu.add.button("Enviar", imprimir_respuestas)
-    menu.add.button("Salir", pygame_menu.events.EXIT)
+        menu.add.button("Enviar", imprimir_respuestas, font_size=100)
+    menu.add.button("Salir", pygame_menu.events.EXIT, font_size=100)
     
 
 # Función para manejar el cambio de respuesta
@@ -151,5 +151,5 @@ def main(vol):
         pygame.display.update()
 
 # Llamar a la función principal
-# if __name__ == "__main__":
-#     main('0.9')
+if __name__ == "__main__":
+    main('0.9')
