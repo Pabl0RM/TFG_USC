@@ -18,8 +18,8 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
     omision=0
     acumulativo=0
     # Definir tamaño de la ventana
-    X=800
-    Y=600
+    A=512
+    B=512
 
 
     X,Y = pygame.display.set_mode().get_size()
@@ -38,10 +38,10 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
 
     # Cargar imágenes
 
-    img_folder = "imgs_prueba_pict/"
+    img_folder = "imgs-IA/"
 
     # Obtener una lista de los nombres de archivo de todas las imágenes en la carpeta
-    img_paths = sorted([img_folder+f for f in os.listdir(img_folder) if os.path.isfile(os.path.join(img_folder, f)) and f.endswith('.jpg')]    )
+    img_paths = sorted([img_folder+f for f in os.listdir(img_folder) if os.path.isfile(os.path.join(img_folder, f)) and f.endswith('.png')]    )
     counter = 1
     contiene_c = []
     contiene_incorrecta = []
@@ -71,14 +71,14 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
         correct_image = pygame.image.load(contiene_incorrecta[counter])
         incorrect_image = pygame.image.load(contiene_correcta[counter])
 
-        # Definir tamaño de las imágenes
-        image1 = pygame.transform.smoothscale(image1, (int(X*0.5), int(Y*.5)))
-        correct_image = pygame.transform.smoothscale(correct_image, (int(X*0.25), int(Y*0.25)))
-        incorrect_image = pygame.transform.smoothscale(incorrect_image, (int(X*0.25), int(Y*0.25)))
+        # Definir tamaño de las imágenes (int(A*0.75), int(B*0.75)))
+        image1 = pygame.transform.smoothscale(image1, (int(A*0.75), int(B*0.75)))
+        correct_image = pygame.transform.smoothscale(correct_image, (int(A*0.75), int(B*0.75)))
+        incorrect_image = pygame.transform.smoothscale(incorrect_image, (int(A*0.75), int(B*0.75)))
     else:
         image1 = pygame.Surface((int(X*0.5), int(Y*0.5)))
-        correct_image = pygame.Surface((int(X*0.25), int(Y*0.25)))
-        incorrect_image = pygame.Surface((int(X*0.25), int(Y*0.25)))   
+        correct_image = pygame.Surface((int(A*0.75), int(B*0.75)))
+        incorrect_image = pygame.Surface((int(A*0.75), int(B*0.75)))   
     #pict(window,contiene_c,contiene_correcta,contiene_incorrecta,counter)
     # Definir posición de las imágenes
     image1_rect = image1.get_rect(center=(int(X*0.5),int( Y/3.5545454)))
@@ -218,13 +218,13 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
                             incorrect_image = pygame.image.load(contiene_correcta[counter])
 
 
-                            image1 = pygame.transform.smoothscale(image1, (int(X*0.5),int( Y*.5)))
+                            image1 = pygame.transform.smoothscale(image1, (int(X*0.5),int( Y*0.5)))
                             correct_image = pygame.transform.smoothscale(correct_image, (int(X*0.25),int( Y*0.25)))
                             incorrect_image = pygame.transform.smoothscale(incorrect_image, (int(X*0.25),int( Y*0.25)))
                         else:
                             image1 = pygame.Surface((int(X*0.5), int(Y*0.5)))
-                            correct_image = pygame.Surface((int(X*0.25), int(Y*0.25)))
-                            incorrect_image = pygame.Surface((int(X*0.25), int(Y*0.25)))  
+                            correct_image = pygame.Surface((int(A*0.75), int(B*0.75)))
+                            incorrect_image = pygame.Surface((int(A*0.75), int(B*0.75)))  
                         #pict(window,contiene_c,contiene_correcta,contiene_incorrecta,counter)
                         # Definir posición de las imágenes
                         image1_rect  = image1.get_rect(center=(int(X*0.5),int( Y/3.5545454)))
@@ -287,7 +287,7 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
             correct_image = pygame.image.load(contiene_incorrecta[counter])
             incorrect_image = pygame.image.load(contiene_correcta[counter])
             
-            image1 = pygame.transform.smoothscale(image1, (int(X*0.5),int( Y*.5)))
+            image1 = pygame.transform.smoothscale(image1, (int(X*0.5),int( Y*0.5)))
             correct_image = pygame.transform.smoothscale(correct_image, (int(X*0.25),int( Y*0.25)))
             incorrect_image = pygame.transform.smoothscale(incorrect_image, (int(X*0.25),int( Y*0.25)))
 
@@ -573,4 +573,4 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
     import encuestas
     encuestas.main(vol)
     
-# mmain('proba','proba','proba','localhost:35677','0.666','text')
+mmain('proba','proba','proba','localhost:35677','0.666','img')
