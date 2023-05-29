@@ -83,7 +83,8 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
     # Definir posición de las imágenes
     image1_rect = image1.get_rect(center=(int(X*0.5),int( Y/3.5545454)))
     aux_r=random.random()
-    if aux_r<0.7:correct_image_rect = correct_image.get_rect(center=(int(X/5.33333),int( Y/1.55)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/1.23),int( Y/1.55)))
+    print('aux 1',aux_r)
+    if aux_r<0.5:correct_image_rect = correct_image.get_rect(center=(int(X/5.33333),int( Y/1.55)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/1.23),int( Y/1.55)))
     else:correct_image_rect = correct_image.get_rect(center=(int(X/1.23),int( Y/1.55)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/5.33333),int( Y/1.55)))
 
     # Banderas para verificar si se hizo clic en una imagen (int(X/1.23),int( Y/1.7148))
@@ -193,7 +194,7 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
                         pygame.draw.rect(window, (155,155,155), image1_rect, 10)
                         pygame.display.update()
                         aux=pygame.time.get_ticks()
-                        pygame.time.wait(3000)
+                        pygame.time.wait(3500)
                         acumulativo+=pygame.time.get_ticks()-aux
                         
 
@@ -205,7 +206,7 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
                         pygame.draw.rect(window, (155,155,155), image1_rect, 10)
                         pygame.display.update()
                         aux=pygame.time.get_ticks()
-                        pygame.time.wait(3000)
+                        pygame.time.wait(3500)
                         acumulativo+=pygame.time.get_ticks()-aux                  
                     
                                                 
@@ -231,7 +232,8 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
                         # correct_image_rect = correct_image.get_rect(center=(int(X/5.33333),int( Y/1.7148)))
                         # incorrect_image_rect = incorrect_image.get_rect(center=(int(X/1.23),int( Y/1.7148)))
                         aux_r=random.random()
-                        if aux_r<0.7:correct_image_rect = correct_image.get_rect(center=(int(X/5.33333),int( Y/1.55)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/1.23),int( Y/1.55)))
+                        print('aux 2',aux_r)
+                        if aux_r<0.5:correct_image_rect = correct_image.get_rect(center=(int(X/5.33333),int( Y/1.55)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/1.23),int( Y/1.55)))
                         else:correct_image_rect = correct_image.get_rect(center=(int(X/1.23),int( Y/1.55)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/5.33333),int( Y/1.55)))
 
                         # # Reiniciar banderas
@@ -247,8 +249,8 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
                             pygame.draw.rect(window, (155,155,155), incorrect_image_rect, 10)
                             pygame.draw.rect(window, (155,155,155), image1_rect, 10)
                             pygame.display.update()
-                            pygame.time.wait(1500)
-                            acumulativo+=pygame.time.get_ticks()-1500
+                            pygame.time.wait(2000)
+                            acumulativo+=pygame.time.get_ticks()-2000
                         
 
                     
@@ -258,8 +260,8 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
                             pygame.draw.rect(window, (155,155,155), correct_image_rect, 10)
                             pygame.draw.rect(window, (155,155,155), image1_rect, 10)
                             pygame.display.update()
-                            pygame.time.wait(1500)   
-                            acumulativo+=pygame.time.get_ticks()-1500
+                            pygame.time.wait(2000)   
+                            acumulativo+=pygame.time.get_ticks()-2000
                     except:
                         print("except")
                         running = False
@@ -281,7 +283,7 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
             window.blit(counting_text_time, counting_rect_time)
             pygame.display.update()
             pygame.time.wait(2500)     
-            
+            acumulativo+=pygame.time.get_ticks()-2500
                     
             image1 = pygame.image.load(contiene_c[counter])
             correct_image = pygame.image.load(contiene_incorrecta[counter])
@@ -298,7 +300,8 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
             # correct_image_rect = correct_image.get_rect(center=(int(X/5.33333),int( Y/1.7148)))
             # incorrect_image_rect = incorrect_image.get_rect(center=(int(X/1.23),int( Y/1.7148)))
             aux_r=random.random()
-            if aux_r<0.7:correct_image_rect = correct_image.get_rect(center=(int(X/5.33333),int( Y/1.55)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/1.23),int( Y/1.55)))
+            print('aux 3',aux_r)
+            if aux_r<0.5:correct_image_rect = correct_image.get_rect(center=(int(X/5.33333),int( Y/1.55)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/1.23),int( Y/1.55)))
             else:correct_image_rect = correct_image.get_rect(center=(int(X/1.23),int( Y/1.55)));incorrect_image_rect = incorrect_image.get_rect(center=(int(X/5.33333),int( Y/1.55)))
                     
             # Reiniciar banderas
@@ -540,4 +543,4 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
     import encuestas
     encuestas.main(vol)
     
-#mmain('proba','proba','proba','localhost:35677','0.666','img')
+mmain('proba','proba','proba','localhost:35677','0.666','img')
