@@ -1,12 +1,12 @@
 {
-    "name": "proba",
-    "time-stamp": "2023-05-25 22:47:34.971498",
-    "execution-time": "00:00:866",
-    "avg-test-time": "00:00:000",
-    "aciertos": 0,
+    "name": "1109fd0eae25",
+    "time-stamp": "2023-05-29 11:26:56.928825",
+    "execution-time": "00:11:010",
+    "avg-test-time": "00:05:518",
+    "aciertos": 7,
     "fallos": 0,
     "omisiones": 0,
-    "multi-idioma": "proba",
-    "Version": "proba",
+    "multi-idioma": "esp",
+    "Version": "1.0",
     "SO": "Linux"
 }

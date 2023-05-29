@@ -147,19 +147,121 @@ def level_menu():
     mainmenu._open(level)
 def explicacion_pepper():
     # subprocess.Popen("python pruebaPepper_01.py ", shell=True) 
-    subprocess.run(["python", "feedbackPepper-tablet/pruebaPepper_01.py",IP_port,vol])
-    
-def explicacion_sintetizador():
-    pygame.mixer.music.load('tmp.mp3')
 
-# Reproducir canción
-    pygame.mixer.music.play()
+    a=subprocess.Popen(["python", "feedbackPepper-tablet/pruebaPepper_01.py",IP_port,vol])
+    while a.poll()==None:
+        surface.fill((0, 18, 40))
+        
+        
+        A=512
+        B=512
 
-    # Esperar a que termine la canción
-    while pygame.mixer.music.get_busy():
+        scale=0.91
+
+        image1 = pygame.image.load("imgs/T_00_central.jpg")
+        correct_image = pygame.image.load("imgs/T_00_Drcha_incorrecta.jpg")
+        incorrect_image = pygame.image.load("imgs/T_00_Izq_correcta.jpg")
+
+        image1 = pygame.transform.smoothscale(image1, (int(A*scale), int(B*scale)))
+        correct_image = pygame.transform.smoothscale(correct_image, (int(A*scale), int(B*scale)))
+        incorrect_image = pygame.transform.smoothscale(incorrect_image, (int(A*scale), int(B*scale)))
+
+        image1_rect = image1.get_rect(center=(int(X*0.5),int( Y/3.5545454)))
+        correct_image_rect=correct_image.get_rect(center=(int(X/5.33333),int( Y/1.55)))
+        incorrect_image_rect = incorrect_image.get_rect(center=(int(X/1.23),int( Y/1.55)))   
+
+        surface.blit(image1, image1_rect)
+        surface.blit(correct_image, correct_image_rect)
+        surface.blit(incorrect_image, incorrect_image_rect)  
+
+        pygame.draw.rect(surface, (0, 255, 0), incorrect_image_rect, 10)
+        pygame.draw.rect(surface, (0, 255, 0), image1_rect, 10)               
+        pygame.display.update()       
+        pygame.time.wait(4000)
+        image1 = pygame.image.load("imgs/T_00_central.jpg")
+        correct_image = pygame.image.load("imgs/T_00_Drcha_incorrecta.jpg")
+        incorrect_image = pygame.image.load("imgs/T_00_Izq_correcta.jpg")
+
+        image1 = pygame.transform.smoothscale(image1, (int(A*scale), int(B*scale)))
+        correct_image = pygame.transform.smoothscale(correct_image, (int(A*scale), int(B*scale)))
+        incorrect_image = pygame.transform.smoothscale(incorrect_image, (int(A*scale), int(B*scale)))
+
+        image1_rect = image1.get_rect(center=(int(X*0.5),int( Y/3.5545454)))
+        correct_image_rect=correct_image.get_rect(center=(int(X/5.33333),int( Y/1.55)))
+        incorrect_image_rect = incorrect_image.get_rect(center=(int(X/1.23),int( Y/1.55)))   
+
+        surface.blit(image1, image1_rect)
+        surface.blit(correct_image, correct_image_rect)
+        surface.blit(incorrect_image, incorrect_image_rect)  
+
+        pygame.draw.rect(surface, (255, 0, 0), correct_image_rect, 10)
+        pygame.draw.rect(surface, (255, 0, 0), image1_rect, 10)               
+        pygame.display.update()         
+        pygame.time.wait(4000)
         continue
 
+
+def explicacion_sintetizador():
+
+
+    pygame.mixer.music.load('tmp.mp3')
+    # Reproducir canción
+    pygame.mixer.music.play()
+    # Esperar a que termine la canción
+    while pygame.mixer.music.get_busy():     
+        surface.fill((0, 18, 40))
+        
+        
+        A=512
+        B=512
+
+        scale=0.91
+
+        image1 = pygame.image.load("imgs/T_00_central.jpg")
+        correct_image = pygame.image.load("imgs/T_00_Drcha_incorrecta.jpg")
+        incorrect_image = pygame.image.load("imgs/T_00_Izq_correcta.jpg")
+
+        image1 = pygame.transform.smoothscale(image1, (int(A*scale), int(B*scale)))
+        correct_image = pygame.transform.smoothscale(correct_image, (int(A*scale), int(B*scale)))
+        incorrect_image = pygame.transform.smoothscale(incorrect_image, (int(A*scale), int(B*scale)))
+
+        image1_rect = image1.get_rect(center=(int(X*0.5),int( Y/3.5545454)))
+        correct_image_rect=correct_image.get_rect(center=(int(X/5.33333),int( Y/1.55)))
+        incorrect_image_rect = incorrect_image.get_rect(center=(int(X/1.23),int( Y/1.55)))   
+
+        surface.blit(image1, image1_rect)
+        surface.blit(correct_image, correct_image_rect)
+        surface.blit(incorrect_image, incorrect_image_rect)  
+
+        pygame.draw.rect(surface, (0, 255, 0), incorrect_image_rect, 10)
+        pygame.draw.rect(surface, (0, 255, 0), image1_rect, 10)               
+        pygame.display.update()       
+        pygame.time.wait(4000)
+        image1 = pygame.image.load("imgs/T_00_central.jpg")
+        correct_image = pygame.image.load("imgs/T_00_Drcha_incorrecta.jpg")
+        incorrect_image = pygame.image.load("imgs/T_00_Izq_correcta.jpg")
+
+        image1 = pygame.transform.smoothscale(image1, (int(A*scale), int(B*scale)))
+        correct_image = pygame.transform.smoothscale(correct_image, (int(A*scale), int(B*scale)))
+        incorrect_image = pygame.transform.smoothscale(incorrect_image, (int(A*scale), int(B*scale)))
+
+        image1_rect = image1.get_rect(center=(int(X*0.5),int( Y/3.5545454)))
+        correct_image_rect=correct_image.get_rect(center=(int(X/5.33333),int( Y/1.55)))
+        incorrect_image_rect = incorrect_image.get_rect(center=(int(X/1.23),int( Y/1.55)))   
+
+        surface.blit(image1, image1_rect)
+        surface.blit(correct_image, correct_image_rect)
+        surface.blit(incorrect_image, incorrect_image_rect)  
+
+        pygame.draw.rect(surface, (255, 0, 0), correct_image_rect, 10)
+        pygame.draw.rect(surface, (255, 0, 0), image1_rect, 10)               
+        pygame.display.update()         
+        pygame.time.wait(4000)
+        continue
+
+
 def pepper_config(v):
+    
     global IP_port
     try:
         IP_port=v
@@ -172,7 +274,7 @@ def option_menu():
  
 def rest():
     print(Name)
-mainmenu = pygame_menu.Menu('TFG', X, Y, theme=my_theme)
+mainmenu = pygame_menu.Menu('Test PP TFG', X, Y, theme=my_theme)
 
 # mainmenu.add.button('Nombre', name, font_size=100)
 mainmenu.add.button('Empezar', start_the_game, font_size=100)
@@ -186,7 +288,6 @@ level = pygame_menu.Menu('Descripcion del test', X, Y, theme=my_theme)
 level.add.button('Pepper',explicacion_pepper, font_size=100)
 # level.add.button('Terminal-Sintetizador',explicacion_sintetizador)
 level.add.button('Terminal-Sintetizador',explicacion_sintetizador, font_size=100)
-
 
 
 options = pygame_menu.Menu('Opciones', X, Y, theme=my_theme)
@@ -242,5 +343,6 @@ while True:
         mainmenu.draw(surface)
         if (mainmenu.get_current().get_selected_widget()):
              arrow.draw(surface, mainmenu.get_current().get_selected_widget())
+             seconds=0
  
     pygame.display.update()

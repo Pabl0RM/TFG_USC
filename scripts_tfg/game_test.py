@@ -103,7 +103,9 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
     picto=0
     while running:
         counting_time = pygame.time.get_ticks() - start_time-acumulativo
-    
+
+
+       
         
         
         for event in pygame.event.get():
@@ -351,6 +353,9 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
   
 
         # Actualizar pantalla
+        pygame.draw.rect(window, (0,0,0), correct_image_rect, 10)
+        pygame.draw.rect(window, (0,0,0), incorrect_image_rect, 10)
+        pygame.draw.rect(window, (0,0,0), image1_rect, 10)        
         pygame.display.update()  
         clock.tick(100)   
         if counter >len(contiene_c) or picto:
@@ -430,43 +435,6 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
     variable_7 = "Puntuacion: " +formula
 
 
-#             # Definir las dimensiones del rectángulo
-#     rect_width = 350
-#     rect_height = 400
-#     aux=150
-
-#     # Crear el rectángulo de color negro
-#     rect = pygame.Surface((rect_width, rect_height))
-#     rect.fill((17, 177, 177))
-
-#     # Renderizar el rectángulo en la ventana
-#     window.blit(rect, ((window.get_width()//2)-50, aux ))
-
-
-#     # Definir el color del texto
-#     text_color = (0, 0, 0)
-
-#     ancho_pantalla = window.get_width()
-# #   Renderizar las variables en la ventana
-#     variable_1_text = font.render(str(variable_1), True, text_color)
-#     window.blit(variable_1_text, (ancho_pantalla//2,aux+ 50))
-
-#     variable_2_text = font.render(str(variable_2), True, text_color)
-#     window.blit(variable_2_text, (ancho_pantalla//2,aux+ 100))
-
-#     variable_3_text = font.render(str(variable_3), True, text_color)
-#     window.blit(variable_3_text, (ancho_pantalla//2,aux+ 150))
-
-#     variable_4_text = font.render(str(variable_4), True, text_color)
-#     window.blit(variable_4_text, (ancho_pantalla//2,aux+ 200))
-
-#     variable_5_text = font.render(str(variable_5), True, text_color)
-#     window.blit(variable_5_text, (ancho_pantalla//2,aux+ 250))
-#     variable_6_text = font.render(str(variable_6), True, text_color)
-#     window.blit(variable_6_text, (ancho_pantalla//2,aux+ 300))
-
-#     variable_7_text = font.render(str(variable_7), True, text_color)
-#     window.blit(variable_7_text, (ancho_pantalla//2,aux+ 350))    
 
 
     import pygame_menu
@@ -572,4 +540,4 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
     import encuestas
     encuestas.main(vol)
     
-mmain('proba','proba','proba','localhost:35677','0.666','text')
+#mmain('proba','proba','proba','localhost:35677','0.666','img')

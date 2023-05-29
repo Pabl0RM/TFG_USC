@@ -30,15 +30,15 @@ postura=ALProxy("ALRobotPosture",IP_l[0],int(IP_l[1]))
 
 
 postura.goToPosture("Stand", 1.0)
-tts.say("Buenos dias!!")
+
 
 
 tts.say("Bienvenido al test semántico, procedo a realizar una breve explicación")
 # postura.goToPosture("Stand", 1.0)
-tts.say("La memoria semántica es definida como el\
-        sistema que permite almacenar el significado de\
-        las palabras, objetos, conceptos y el significado\
-        del mundo en general. El test más utilizado paraevaluar los déficit semánticos adquiridos es elTest de Pirámides y Palmeras . Es una prueba de asociación semántica que se administra desde diferentes modalidades (pictórica y verbal) y se encuentra muy condicionada por el medio socio cultural.")
+tts.say("Buenos días!! SOy el robot Pepper y seré hoy tu guía para la realización de este test. \
+                Llamado el test de las palmeras y pirámides y consiste en que tú relaciones la imágen superior con solamente una de las imágenes\
+                inferiores, ya sea la derecha o la izquierda, clicando con el dedo en ella.Puedes ver el ejemplo en pantalla. Durante las 3 primeras tríadas, te diré si lo has hecho bien o no para\
+                que entiendas la dinámica, luego, deberás continuar sola o solo. Muy bien!! Puedes clicar en empezar si la configuración ya ha sido introducida. Ánimo!!!")
 
 # class StateMachine:
     
