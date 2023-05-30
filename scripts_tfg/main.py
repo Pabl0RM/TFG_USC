@@ -20,16 +20,16 @@ my_font = pygame_menu.font.FONT_OPEN_SANS
 
 # Crea el tema con la fuente personalizada
 my_theme = pygame_menu.themes.Theme(
-    background_color=(0, 18, 40),
+    background_color=(0,114,119),
     scrollbar_shadow=True,
     scrollbar_slider_color=(150, 200, 230),
     scrollbar_slider_hover_color=(123, 173, 202),
     scrollbar_slider_pad=2,
-    selection_color=(100, 62, 132),
-    title_background_color=(0, 32, 64),
+    selection_color=(123,222,226),
+    title_background_color=(0,65,71),
     title_font_color=(228, 230, 246),
     title_font_shadow=True,
-    widget_font_color=(0, 136, 204),
+    widget_font_color=(0,0,0),
     title_font_size=150,
     widget_font_size=150
 

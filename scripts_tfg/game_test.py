@@ -31,8 +31,9 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
     background = pygame.Surface(window.get_size())
     background = background.convert()
     # Cargar la imagen de fondo
+    
     bg_image = pygame.image.load('fondo1.png')
-
+    pastel=True;verde_pastel=(0,114,119)
     # Escalar la imagen al tamaño de la ventana
     bg_image = pygame.transform.scale(bg_image, window.get_size())
 
@@ -388,7 +389,8 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
             running = False   
             print(counting_time)
         
-        window.blit(bg_image, (0, 0))
+        if pastel:window.fill(verde_pastel)
+        else:window.blit(bg_image, (0, 0))
         
         counting_minutes = str(counting_time//60000).zfill(2)
         counting_seconds = str( (counting_time%60000)//1000 ).zfill(2)
@@ -442,16 +444,16 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
 
     import pygame_menu
 
-    menu = pygame_menu.Menu('Analisis',X,Y,  theme=pygame_menu.themes.THEME_DEFAULT)
+    encuesta = pygame_menu.Menu('Analisis',X,Y,  theme=pygame_menu.themes.THEME_DARK)
 
     variables = [variable_1,variable_2,variable_3,variable_4,variable_5,variable_6,variable_7]
 
     for variable in variables:
-        menu.add.label(variable, align=pygame_menu.locals.ALIGN_CENTER,font_size=70)
+        encuesta.add.label(variable, align=pygame_menu.locals.ALIGN_CENTER,font_size=70)
 
     def back():
         a=False
-        menu.clear()
+        encuesta.clear()
         print("Tiempo total:",(counting_string))
  
         #encuestas
@@ -483,7 +485,7 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
         encuestas.main(vol)
         
 
-    menu.add.button('Encuesta', back,font_size=70)
+    encuesta.add.button('Encuesta', back,font_size=70)
     a=True
     while a:
         events = pygame.event.get()
@@ -491,9 +493,9 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-        menu.update(events)
+        encuesta.update(events)
         
-        menu.draw(window)
+        encuesta.draw(window)
         pygame.display.flip()
 
 
