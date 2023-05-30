@@ -57,11 +57,14 @@ def show_question():
     menu.clear()
     menu.add.label(preguntas[current_question], font_size=100)
     menu.add.selector("Puntua", [("1", 1), ("2", 2), ("3", 3), ("4", 4), ("5", 5)], onchange=on_answer_change, font_size=100)
-    menu.add.button("Anterior", previous_question, font_size=100)
-    menu.add.button("Siguiente", next_question, font_size=100)
+    if current_question!=0:
+        menu.add.button("Anterior", previous_question, font_size=100)
+
     if current_question == len(preguntas) - 1:
         menu.add.button("Enviar", imprimir_respuestas, font_size=100)
-    menu.add.button("Salir", pygame_menu.events.EXIT, font_size=100)
+    else:
+        menu.add.button("Siguiente", next_question, font_size=100)        
+    menu.add.button("Salir", fin, font_size=100)
     
 
 # Función para manejar el cambio de respuesta
@@ -96,7 +99,11 @@ def next_question():
     
     IP_port=open('tmpp.txt').read()
     subprocess.run(["python", "pepper_dice3.py",IP_port,str(current_question),volu])     
-
+def fin():
+    IP_port=open('tmpp.txt').read()
+    subprocess.run(["python", "feedbackPepper-tablet/pepperAgradece.py",IP_port,volu])    
+    pygame.quit()
+    quit()    
 # Función para imprimir las respuestas
 def imprimir_respuestas():
 
@@ -122,6 +129,8 @@ def imprimir_respuestas():
         #input()
 
         subprocess.run(["python3", "firebase_waits.py",j["name"]])        
+        IP_port=open('tmpp.txt').read()
+        subprocess.run(["python", "feedbackPepper-tablet/pepperAgradece.py",IP_port,volu])
         pygame.quit()
         quit()
      
