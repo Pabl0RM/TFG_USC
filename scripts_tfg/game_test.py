@@ -545,4 +545,4 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
     import encuestas
     encuestas.main(vol)
     
-mmain('proba','proba','proba','localhost:35677','0.666','img')
+# mmain('proba','proba','proba','localhost:35677','0.666','img')
