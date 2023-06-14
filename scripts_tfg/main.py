@@ -35,7 +35,7 @@ my_theme = pygame_menu.themes.Theme(
 
 )
 # Definir la versión del juego
-VERSION = "1.0"
+VERSION = "2.0"
 
 
 
@@ -291,7 +291,7 @@ mainmenu.add.button('Empezar', start_the_game, font_size=100)
 mainmenu.add.button('Explicacion', level_menu, font_size=100)
 mainmenu.add.button('Opciones', option_menu, font_size=100)
 mainmenu.add.button('Salir', pygame_menu.events.EXIT, font_size=100)
-mainmenu.add.label('Version1.0',font_size=20)
+mainmenu.add.label('Version2.0',font_size=20)
 
 
 level = pygame_menu.Menu('Descripcion del test', X, Y, theme=my_theme)
