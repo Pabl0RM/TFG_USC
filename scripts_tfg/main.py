@@ -276,7 +276,7 @@ def pepper_config(v):
     try:
         IP_port=v
     except:
-        IP_port="localhost:43397"#localhost:43397
+        IP_port="localhost:43091"#localhost:43397
     print(IP_port)
 
 def option_menu():
@@ -284,7 +284,7 @@ def option_menu():
  
 def rest():
     print(Name)
-mainmenu = pygame_menu.Menu('Test PP TFG', X, Y, theme=my_theme)
+mainmenu = pygame_menu.Menu('Test PyPalmeras', X, Y, theme=my_theme)
 
 # mainmenu.add.button('Nombre', name, font_size=100)
 mainmenu.add.button('Empezar', start_the_game, font_size=100)
@@ -303,7 +303,7 @@ level.add.button('Terminal-Sintetizador',explicacion_sintetizador, font_size=100
 options = pygame_menu.Menu('Opciones', X, Y, theme=my_theme)
 options.add.selector('Idioma ', [('Español', "esp"), ('Inglés', "eng"), ('Galego', "gal")], onchange=set_leguage,font_size=50) 
 options.add.selector('Modo ', [('Imágenes', "img"), ('Textual', "text")], onchange=set_mode,font_size=50) 
-options.add.text_input("IP:port-> ", default="localhost:45573", onreturn=pepper_config,font_size=50) 
+options.add.text_input("IP:port-> ", default="localhost:43091", onreturn=pepper_config,font_size=50) 
 
 
 options.add.range_slider('Volumen del Pepper', 50, (0, 100), 1,
@@ -322,7 +322,7 @@ arrow = pygame_menu.widgets.LeftArrowSelection(arrow_size = (20, 30))
 update_loading = pygame.USEREVENT + 0
 
 #opciones predeterminadas
-IP_port='localhost:45573';modoo='img';vol='75'
+IP_port='localhost:43091';modoo='img';vol='75'
 
 while True:
     events = pygame.event.get()

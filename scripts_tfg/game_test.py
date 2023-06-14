@@ -444,7 +444,7 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
     variable_4 = "Aciertos: " +str(aciertos)
     variable_5 = "Fallos: " +str(fallos)
     variable_6 = "Omisiones: " +str(omision)
-    variable_7 = "Puntuacion: " +formula
+    variable_7 = "Puntuación: " +formula+"/3.9 en 24 tríadas"
 
 
 
@@ -474,6 +474,7 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
             "fallos": fallos,
             "puntuacion":formula,
             "omisiones": omision,
+            "modo":mode,
             "multi_idioma":lang,
             "Version":VERSION,
             "SO":platform.system()

@@ -128,7 +128,7 @@ def imprimir_respuestas():
         f = open('ST_data.json')
         j=json.load(f)
         #input()
-
+        print(j["name"])
         subprocess.run(["python3", "firebase_waits.py",j["name"]])        
         IP_port=open('tmpp.txt').read()
         subprocess.run(["python", "feedbackPepper-tablet/pepperAgradece.py",IP_port,volu])
