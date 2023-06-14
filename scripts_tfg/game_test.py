@@ -94,7 +94,7 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
 
 
     running = True
-    max_time_without_click = 10
+    max_time_without_click = 8
 
     # tiempo actual sin clic
     time_without_click = 0
@@ -283,17 +283,24 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
             counting_rect_time = counting_text_time.get_rect(center = feedback)
             window.blit(counting_text_time, counting_rect_time)
             pygame.display.update()
-            pygame.time.wait(2500)     
-            acumulativo+=pygame.time.get_ticks()-2500
-                    
-            image1 = pygame.image.load(contiene_c[counter])
-            correct_image = pygame.image.load(contiene_incorrecta[counter])
-            incorrect_image = pygame.image.load(contiene_correcta[counter])
-            
+            # pygame.time.wait(2500)     
+            # acumulativo+=pygame.time.get_ticks()-2500
+            aux=pygame.time.get_ticks()
+            pygame.time.wait(3500)
+            acumulativo+=pygame.time.get_ticks()-aux    
 
-            image1 = pygame.transform.smoothscale(image1, (int(A*scale), int(B*scale)))
-            correct_image = pygame.transform.smoothscale(correct_image, (int(A*scale), int(B*scale)))
-            incorrect_image = pygame.transform.smoothscale(incorrect_image, (int(A*scale), int(B*scale)))
+            if mode=="img":
+                image1 = pygame.image.load(contiene_c[counter])
+                correct_image = pygame.image.load(contiene_incorrecta[counter])
+                incorrect_image = pygame.image.load(contiene_correcta[counter])
+
+                image1 = pygame.transform.smoothscale(image1, (int(A*scale), int(B*scale)))
+                correct_image = pygame.transform.smoothscale(correct_image, (int(A*scale), int(B*scale)))
+                incorrect_image = pygame.transform.smoothscale(incorrect_image, (int(A*scale), int(B*scale)))
+            else:
+                image1 = pygame.Surface((int(A*scale), int(B*scale)))
+                correct_image = pygame.Surface((int(A*scale), int(B*scale)))
+                incorrect_image = pygame.Surface((int(A*scale), int(B*scale))) 
 
             # Definir posición de las imágenes
             image1_rect =  image1.get_rect(center=(int(X*0.5),int( Y/3.5545454)))
@@ -465,7 +472,7 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
             "avg_test_time": meadia_counting_string,
             "aciertos": aciertos,
             "fallos": fallos,
-            
+            "puntuacion":formula,
             "omisiones": omision,
             "multi_idioma":lang,
             "Version":VERSION,

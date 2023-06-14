@@ -31,13 +31,14 @@ menu = pygame_menu.Menu("Encuesta de usabilidad del robot Pepper", X, Y, theme=p
 
 # Lista de preguntas
 preguntas = [
-    "¿El robot Pepper es fácil de usar?",
-    "¿El robot Pepper es atractivo visualmente?",
-    "¿El robot Pepper es útil?",
-    "¿El robot Pepper es confiable?",
-    "¿El robot Pepper es fácil de entender?"
+    "¿El test es fácil de entender con la ayuda del robot Pepper?",
+    "El robot puede adaptarse al test realizado",
+    "¿El robot Pepper es útil dentro del test realizado?",
+    "El robot transmite confianza cuando da feedback",
+    "Seguiría un consejo del Pepper sobre el análisis del test",
+ "¿Considera que el Pepper le da valor añadido al test?"   
 ]
-respuestas=[None]*5
+respuestas=[None]*6
 
 # Variable para controlar el índice de la pregunta actual
 current_question = 0
@@ -55,7 +56,7 @@ def write_json(new_data, filename='ST_data.json'):
 # Función para mostrar la pregunta actual
 def show_question():
     menu.clear()
-    menu.add.label(preguntas[current_question], font_size=100)
+    menu.add.label(preguntas[current_question], font_size=70)
     menu.add.selector("Puntua", [("1", 1), ("2", 2), ("3", 3), ("4", 4), ("5", 5)], onchange=on_answer_change, font_size=100)
     if current_question!=0:
         menu.add.button("Anterior", previous_question, font_size=100)

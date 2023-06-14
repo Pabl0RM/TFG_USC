@@ -1,13 +1,13 @@
 {
-    "name": "988744fea0b8",
-    "time-stamp": "2023-06-06 12:19:52.212658",
-    "execution-time": "-2:50:186",
-    "avg-test-time": "-1:41:269",
-    "aciertos": 5,
-    "fallos": 3,
-    "omisiones": 2,
-    "multi-idioma": "esp",
+    "name": "2841cef2184a",
+    "time_stamp": "2023-06-14 12:36:12.967919",
+    "execution_time": "00:14:347",
+    "avg_test_time": "00:08:144",
+    "aciertos": 6,
+    "fallos": 2,
+    "omisiones": 1,
+    "multi_idioma": "esp",
     "Version": "1.0",
     "SO": "Linux",
-    "respuestas": "4\n1\n3\n3\n4\n"
+    "respuestas": "None\nNone\nNone\nNone\nNone\nNone\n"
 }
