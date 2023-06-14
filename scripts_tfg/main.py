@@ -77,6 +77,10 @@ def set_leguage(value, difficulty):
     global lang
     lang=difficulty
     print(difficulty)
+def set_robot(value, difficulty):
+    global robot
+    robot=difficulty
+    print(robot)    
 def set_mode(_,modo):
     global modoo
     modoo=modo
@@ -302,6 +306,7 @@ level.add.button('Terminal-Sintetizador',explicacion_sintetizador, font_size=100
 
 options = pygame_menu.Menu('Opciones', X, Y, theme=my_theme)
 options.add.selector('Idioma ', [('Español', "esp"), ('Inglés', "eng"), ('Galego', "gal")], onchange=set_leguage,font_size=50) 
+options.add.selector('Robot ', [('Sí', "si"), ('No', "no")], onchange=set_robot,font_size=50) 
 options.add.selector('Modo ', [('Imágenes', "img"), ('Textual', "text")], onchange=set_mode,font_size=50) 
 options.add.text_input("IP:port-> ", default="localhost:43091", onreturn=pepper_config,font_size=50) 
 
@@ -322,7 +327,7 @@ arrow = pygame_menu.widgets.LeftArrowSelection(arrow_size = (20, 30))
 update_loading = pygame.USEREVENT + 0
 
 #opciones predeterminadas
-IP_port='localhost:43091';modoo='img';vol='75'
+IP_port='localhost:43091';modoo='img';vol='75';robot="si"
 
 while True:
     events = pygame.event.get()
@@ -337,7 +342,7 @@ while True:
                 # subprocess.Popen("python prueba_004.py ", shell=True)  
                 # subprocess.run(["python", "prueba_004.py"])
                 if seconds==5:
-                    mmain(token(),lang,VERSION,IP_port,vol,modoo)
+                    mmain(token(),lang,VERSION,IP_port,vol,modoo,robot)
                     # try:
                     #     mmain(token(),lang,VERSION,IP_port,vol,modoo)
                     # except:

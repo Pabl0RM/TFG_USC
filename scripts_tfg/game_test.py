@@ -1,11 +1,21 @@
-import pygame,time,os,random,json,statistics,datetime,platform,subprocess,sys
+import pygame,time,os,random,json,statistics,datetime,platform,subprocess,sys,gtts
 from pygame.locals import *
 
 global namee
 picto=0
+def reproduce_audio(text):
+    tts = gtts.gTTS(text, lang="es",tld='es')
+    tts.save("feedback.mp3")
+    pygame.mixer.music.load('feedback.mp3')
+    # Reproducir canción
+    pygame.mixer.music.play()
+    # Esperar a que termine la canción
+    while pygame.mixer.music.get_busy():     
+        continue
 
-
-def mmain(Name,lang,VERSION,IP_port,vol,mode):
+def mmain(Name,lang,VERSION,IP_port,vol,mode,robot):
+    print(robot)
+    
     # Inicializa Pygame
     pygame.init()
     clock = pygame.time.Clock()
@@ -167,7 +177,9 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
                         window.blit(counting_text2, counting_rect2)
                         pygame.display.update()
                         aux=pygame.time.get_ticks()
-                        subprocess.run(["python", "feedbackPepper-tablet/pruebaPepper_03.py",IP_port,vol])
+
+                        if robot=="si":subprocess.run(["python", "feedbackPepper-tablet/pruebaPepper_03.py",IP_port,vol])
+                        else:reproduce_audio("Efectivamente!! ESa era la imagen adecuada")
                         acumulativo+=pygame.time.get_ticks()-aux
 
                     if incorrect_image_clicked and counter <=4:
@@ -182,7 +194,8 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
                         window.blit(counting_text2, counting_rect2)
                         pygame.display.update()
                         aux=pygame.time.get_ticks()
-                        subprocess.run(["python", "feedbackPepper-tablet/pruebaPepper_02.py",IP_port,vol])                    
+                        if robot=="si":subprocess.run(["python", "feedbackPepper-tablet/pruebaPepper_02.py",IP_port,vol])
+                        else:reproduce_audio("Vaya!!,Te has equivocado eligiendo la imagen")
                         acumulativo+=pygame.time.get_ticks()-aux
                         
 
@@ -488,7 +501,8 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
             outfile.write(json_object)
         pygame.display.quit()
         with open("tmpp.txt", "w") as outfile:
-            outfile.write(IP_port)    
+            if robot=="si":outfile.write(IP_port)    
+            else:outfile.write(robot) 
         import encuestas
         encuestas.main(vol)
         

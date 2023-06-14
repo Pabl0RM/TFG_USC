@@ -1,14 +1,14 @@
 {
-    "name": "b6b4ebc5e100",
-    "time_stamp": "2023-06-14 15:01:32.449918",
-    "execution_time": "00:41:388",
-    "avg_test_time": "00:16:892",
-    "aciertos": 6,
+    "name": "4e8293178da5",
+    "time_stamp": "2023-06-14 22:47:36.580997",
+    "execution_time": "00:03:944",
+    "avg_test_time": "00:01:822",
+    "aciertos": 1,
     "fallos": 1,
-    "puntuacion": "4.6",
-    "omisiones": 4,
+    "puntuacion": "2.1",
+    "omisiones": 0,
     "modo": "img",
     "multi_idioma": "esp",
-    "Version": "1.0",
+    "Version": "2.0",
     "SO": "Linux"
 }

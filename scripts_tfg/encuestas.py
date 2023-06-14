@@ -1,12 +1,37 @@
 import pygame
-import pygame_menu
+import pygame_menu,gtts
 import json,subprocess
 from pygame.locals import *
 def escribir_archivo_texto( contenido):
     with open("tmp.txt", 'w') as archivo:
         archivo.write(str(contenido))
     print(f'Se ha creado y escrito en el archivo "{"tmp.txt"}".')
-
+def reproduce_audio(text):
+    tts = gtts.gTTS(text, lang="es",tld='es')
+    tts.save("feedback.mp3")
+    pygame.mixer.music.load('feedback.mp3')
+    # Reproducir canción
+    pygame.mixer.music.play()
+    # Esperar a que termine la canción
+    while pygame.mixer.music.get_busy():     
+        continue    
+def reproduce_audio2(prg):
+    preguntas = [
+    "¿El test es fácil de entender con la ayuda del robot Pepper?",
+    "El robot puede adaptarse al test realizado",
+    "¿El robot Pepper es útil dentro del test realizado?",
+    "El robot transmite confianza cuando da feedback",
+    "Seguiría un consejo del Pepper sobre el análisis del test",
+    "¿Considera que el Pepper le da valor añadido al test?" 
+]
+    tts = gtts.gTTS(preguntas[int(prg)], lang="es",tld='es')
+    tts.save("feedback.mp3")
+    pygame.mixer.music.load('feedback.mp3')
+    # Reproducir canción
+    pygame.mixer.music.play()
+    # Esperar a que termine la canción
+    while pygame.mixer.music.get_busy():     
+        continue
 def borrar_archivo_texto():
     import os
     if os.path.exists("tmp.txt"):
@@ -87,8 +112,8 @@ def previous_question():
     show_question()
     
     IP_port=open('tmpp.txt').read()
-    subprocess.run(["python", "pepper_dice3.py",IP_port,str(current_question),volu])     
-    
+    if IP_port!="no":subprocess.run(["python", "pepper_dice3.py",IP_port,str(current_question),volu])     
+    else:reproduce_audio2(str(current_question))
 # Función para pasar a la siguiente pregunta
 def next_question():
     global current_question
@@ -99,10 +124,13 @@ def next_question():
     show_question()
     
     IP_port=open('tmpp.txt').read()
-    subprocess.run(["python", "pepper_dice3.py",IP_port,str(current_question),volu])     
+    if IP_port!="no":subprocess.run(["python", "pepper_dice3.py",IP_port,str(current_question),volu])     
+    else:reproduce_audio2(str(current_question))   
 def fin():
     IP_port=open('tmpp.txt').read()
-    subprocess.run(["python", "feedbackPepper-tablet/pepperAgradece.py",IP_port,volu])    
+    
+    if IP_port!="no":subprocess.run(["python", "feedbackPepper-tablet/pepperAgradece.py",IP_port,volu])    
+    else:reproduce_audio("El test y preguntas ya han finalizado. Muchísimas gracias por participar y espero que todo haya sido de tu agrado!!")       
     pygame.quit()
     quit()    
 # Función para imprimir las respuestas
@@ -162,4 +190,4 @@ def main(vol):
 
 # Llamar a la función principal
 if __name__ == "__main__":
-    main('0.9')
+    main('90')

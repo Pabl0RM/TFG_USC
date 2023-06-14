@@ -24,11 +24,12 @@ print(tts.getVolume())
 
 postura.goToPosture("Stand", 1.0)
 preguntas = [
-    "¿El robot Pepper es fácil de usar?",
-    "¿El robot Pepper es atractivo visualmente?",
-    "¿El robot Pepper es útil?",
-    "¿El robot Pepper es confiable?",
-    "¿El robot Pepper es fácil de entender?"
+    "¿El test es fácil de entender con la ayuda del robot Pepper?",
+    "El robot puede adaptarse al test realizado",
+    "¿El robot Pepper es útil dentro del test realizado?",
+    "El robot transmite confianza cuando da feedback",
+    "Seguiría un consejo del Pepper sobre el análisis del test",
+    "¿Considera que el Pepper le da valor añadido al test?" 
 ]
 # postura.goToPosture("Stand", 1.0)
 if   sys.argv[2]=='0':
