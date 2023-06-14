@@ -460,14 +460,14 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode):
 
         dictionary = {
             "name": ID_enmcr,
-            "time-stamp":str(datetime.datetime.now()),
-            "execution-time": counting_string,
-            "avg-test-time": meadia_counting_string,
+            "time_stamp":str(datetime.datetime.now()),
+            "execution_time": counting_string,
+            "avg_test_time": meadia_counting_string,
             "aciertos": aciertos,
             "fallos": fallos,
             
             "omisiones": omision,
-            "multi-idioma":lang,
+            "multi_idioma":lang,
             "Version":VERSION,
             "SO":platform.system()
         }

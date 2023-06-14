@@ -1,12 +1,13 @@
 {
-    "name": "8646827c1feb",
-    "time-stamp": "2023-06-01 12:53:58.446545",
-    "execution-time": "00:02:154",
-    "avg-test-time": "00:01:760",
-    "aciertos": 1,
-    "fallos": 0,
-    "omisiones": 0,
+    "name": "988744fea0b8",
+    "time-stamp": "2023-06-06 12:19:52.212658",
+    "execution-time": "-2:50:186",
+    "avg-test-time": "-1:41:269",
+    "aciertos": 5,
+    "fallos": 3,
+    "omisiones": 2,
     "multi-idioma": "esp",
     "Version": "1.0",
-    "SO": "Linux"
+    "SO": "Linux",
+    "respuestas": "4\n1\n3\n3\n4\n"
 }

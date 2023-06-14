@@ -303,7 +303,7 @@ level.add.button('Terminal-Sintetizador',explicacion_sintetizador, font_size=100
 options = pygame_menu.Menu('Opciones', X, Y, theme=my_theme)
 options.add.selector('Idioma ', [('Español', "esp"), ('Inglés', "eng"), ('Galego', "gal")], onchange=set_leguage,font_size=50) 
 options.add.selector('Modo ', [('Imágenes', "img"), ('Textual', "text")], onchange=set_mode,font_size=50) 
-options.add.text_input("IP:port-> ", default="localhost:37899", onreturn=pepper_config,font_size=50) 
+options.add.text_input("IP:port-> ", default="localhost:45573", onreturn=pepper_config,font_size=50) 
 
 
 options.add.range_slider('Volumen del Pepper', 50, (0, 100), 1,
@@ -322,7 +322,7 @@ arrow = pygame_menu.widgets.LeftArrowSelection(arrow_size = (20, 30))
 update_loading = pygame.USEREVENT + 0
 
 #opciones predeterminadas
-IP_port='localhost:37899';modoo='img';vol='75'
+IP_port='localhost:45573';modoo='img';vol='75'
 
 while True:
     events = pygame.event.get()
