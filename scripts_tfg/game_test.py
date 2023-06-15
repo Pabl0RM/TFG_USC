@@ -287,7 +287,7 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode,robot):
         
         # comprobamos si se ha pasado el tiempo máximo sin clic
         if time_without_click > max_time_without_click:
-            question_times.append(counting_time)
+            question_times.append(counting_time-sum(question_times))
             omision+=1        
             print("No se ha hecho clic en la ventana en los últimos 4 segundos.")
             

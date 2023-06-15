@@ -292,13 +292,13 @@ mainmenu = pygame_menu.Menu('Test PyPalmeras', X, Y, theme=my_theme)
 
 # mainmenu.add.button('Nombre', name, font_size=100)
 mainmenu.add.button('Empezar', start_the_game, font_size=100)
-mainmenu.add.button('Explicacion', level_menu, font_size=100)
+mainmenu.add.button('Explicación', level_menu, font_size=100)
 mainmenu.add.button('Opciones', option_menu, font_size=100)
 mainmenu.add.button('Salir', pygame_menu.events.EXIT, font_size=100)
 mainmenu.add.label('Version2.0',font_size=20)
 
 
-level = pygame_menu.Menu('Descripcion del test', X, Y, theme=my_theme)
+level = pygame_menu.Menu('Descripción del test', X, Y, theme=my_theme)
 level.add.button('Pepper',explicacion_pepper, font_size=100)
 # level.add.button('Terminal-Sintetizador',explicacion_sintetizador)
 level.add.button('Terminal-Sintetizador',explicacion_sintetizador, font_size=100)
