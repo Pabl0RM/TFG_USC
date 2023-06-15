@@ -17,12 +17,12 @@ def reproduce_audio(text):
         continue    
 def reproduce_audio2(prg):
     preguntas = [
-    "¿El test es fácil de entender con la ayuda del robot Pepper?",
-    "El robot puede adaptarse al test realizado",
-    "¿El robot Pepper es útil dentro del test realizado?",
-    "El robot transmite confianza cuando da feedback",
-    "Seguiría un consejo del Pepper sobre el análisis del test",
-    "¿Considera que el Pepper le da valor añadido al test?" 
+    "¿El test es fácil de entender con el feedback sonoro?",
+    "El input táctil es útil dentro del test realizado",
+    "El feedback sonoro es útil dentro del test realizado",
+    "Se entiende bien cuando se da feedback",
+    "Seguiría un consejo de la app sobre el análisis del test",
+    "¿Considera que un feedback sonoro le da valor añadido al test?" 
 ]
     tts = gtts.gTTS(preguntas[int(prg)], lang="es",tld='es')
     tts.save("feedback.mp3")
@@ -57,11 +57,19 @@ menu = pygame_menu.Menu("Encuesta de usabilidad del robot Pepper", X, Y, theme=p
 # Lista de preguntas
 preguntas = [
     "¿El test es fácil de entender con la ayuda del robot Pepper?",
-    "El robot puede adaptarse al test realizado",
+    "El input táctil es útil dentro del test realizado",
     "¿El robot Pepper es útil dentro del test realizado?",
     "El robot transmite confianza cuando da feedback",
     "Seguiría un consejo del Pepper sobre el análisis del test",
  "¿Considera que el Pepper le da valor añadido al test?"   
+]
+preguntas2 = [
+    "¿El test es fácil de entender con el feedback sonoro?",
+    "El input táctil es útil dentro del test realizado",
+    "El feedback sonoro es útil dentro del test realizado",
+    "Se entiende bien cuando se da feedback",
+    "Seguiría un consejo de la app sobre el análisis del test",
+    "¿Considera que un feedback sonoro le da valor añadido al test?" 
 ]
 respuestas=[None]*6
 
@@ -81,7 +89,9 @@ def write_json(new_data, filename='ST_data.json'):
 # Función para mostrar la pregunta actual
 def show_question():
     menu.clear()
-    menu.add.label(preguntas[current_question], font_size=70)
+    IP_port=open('tmpp.txt').read()
+    if IP_port=="no":menu.add.label(preguntas2[current_question], font_size=70)
+    else:menu.add.label(preguntas[current_question], font_size=70)
     menu.add.selector("Puntua", [("1", 1), ("2", 2), ("3", 3), ("4", 4), ("5", 5)], onchange=on_answer_change, font_size=100)
     if current_question!=0:
         menu.add.button("Anterior", previous_question, font_size=100)

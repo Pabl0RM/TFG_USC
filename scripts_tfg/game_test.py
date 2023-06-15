@@ -167,7 +167,7 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode,robot):
                     
                     if (correct_image_clicked ) and counter <=4:
                         print("correcta")
-                        question_times.append(counting_time)
+                        question_times.append(counting_time-sum(question_times))
                         aciertos+=1                     
                         pygame.draw.rect(window, (0, 255, 0), incorrect_image_rect, 10)
                         pygame.draw.rect(window, (0, 255, 0), image1_rect, 10)
@@ -184,7 +184,7 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode,robot):
 
                     if incorrect_image_clicked and counter <=4:
                         print("incorrecta")
-                        question_times.append(counting_time)
+                        question_times.append(counting_time-sum(question_times))
                         fallos+=1                     
                         pygame.draw.rect(window, (255, 0, 0), correct_image_rect, 10)
                         pygame.draw.rect(window, (255, 0, 0), image1_rect, 10)
@@ -201,7 +201,7 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode,robot):
 
 
                     if (correct_image_clicked ) and counter >=5:
-                        question_times.append(counting_time)
+                        question_times.append(counting_time-sum(question_times))
                         aciertos+=1                    
                         print("click")
                         pygame.draw.rect(window, (155,155,155), incorrect_image_rect, 10)
@@ -214,7 +214,7 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode,robot):
 
                     
                     if incorrect_image_clicked and counter>=5:
-                        question_times.append(counting_time)
+                        question_times.append(counting_time-sum(question_times))
                         fallos+=1                        
                         pygame.draw.rect(window, (155,155,155), correct_image_rect, 10)
                         pygame.draw.rect(window, (155,155,155), image1_rect, 10)
@@ -257,7 +257,7 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode,robot):
                         # print(counting_time)
                         # counting_time=counting_time-2000
                         if (correct_image_clicked ) and counter >=5:
-                            question_times.append(counting_time)
+                            question_times.append(counting_time-sum(question_times))
                             aciertos+=1                    
                             print("click")
                             pygame.draw.rect(window, (155,155,155), incorrect_image_rect, 10)
@@ -269,7 +269,7 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode,robot):
 
                     
                         if incorrect_image_clicked and counter>=5:
-                            question_times.append(counting_time)
+                            question_times.append(counting_time-sum(question_times))
                             fallos+=1                        
                             pygame.draw.rect(window, (155,155,155), correct_image_rect, 10)
                             pygame.draw.rect(window, (155,155,155), image1_rect, 10)
@@ -384,7 +384,7 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode,robot):
         clock.tick(100)   
         if counter >len(contiene_c) or picto:
             if (correct_image_clicked ) and counter >=5:
-                question_times.append(counting_time)
+                question_times.append(counting_time-sum(question_times))
                 aciertos+=1                    
                 print("click")
                 pygame.draw.rect(window, (155,155,155), incorrect_image_rect, 10)
@@ -395,7 +395,7 @@ def mmain(Name,lang,VERSION,IP_port,vol,mode,robot):
 
         
             if incorrect_image_clicked and counter>=5:
-                question_times.append(counting_time)
+                question_times.append(counting_time-sum(question_times))
                 fallos+=1                        
                 pygame.draw.rect(window, (155,155,155), correct_image_rect, 10)
                 pygame.draw.rect(window, (155,155,155), image1_rect, 10)
