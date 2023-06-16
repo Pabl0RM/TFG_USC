@@ -1,15 +1,15 @@
 {
-    "name": "037699f7aa2f",
-    "time_stamp": "2023-06-15 13:05:13.802017",
-    "execution_time": "00:26:588",
-    "avg_test_time": "00:02:367",
-    "aciertos": 10,
-    "fallos": 1,
-    "puntuacion": "3.0",
+    "name": "4b47ba30d995",
+    "time_stamp": "2023-06-15 17:30:51.756077",
+    "execution_time": "00:16:641",
+    "avg_test_time": "00:01:464",
+    "aciertos": 11,
+    "fallos": 0,
+    "puntuacion": "2.6",
     "omisiones": 0,
     "modo": "text",
     "multi_idioma": "esp",
     "Version": "2.0",
     "SO": "Linux",
-    "respuestas": "4\n4\n3\n3\n2\n5\n"
+    "respuestas": "None\nNone\nNone\nNone\nNone\nNone\n"
 }
