@@ -1,0 +1,14 @@
+{
+    "name": "4368e13bfe55",
+    "time_stamp": "2023-06-15 22:29:07.680440",
+    "execution_time": "00:06:300",
+    "avg_test_time": "00:02:078",
+    "aciertos": 1,
+    "fallos": 0,
+    "puntuacion": "2.1",
+    "omisiones": 1,
+    "modo": "text",
+    "multi_idioma": "esp",
+    "Version": "2.0",
+    "SO": "Windows"
+}
